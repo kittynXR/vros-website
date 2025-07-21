@@ -82,7 +82,44 @@ export default {
       return handleOptions();
     }
     
-    // Only accept POST requests
+    // Handle admin export endpoint
+    const url = new URL(request.url);
+    if (url.pathname === '/admin/export' && request.method === 'GET') {
+      // Check for admin authorization
+      const auth = request.headers.get('Authorization');
+      const adminKey = env.ADMIN_KEY || 'your-secret-admin-key'; // Set this as an environment variable
+      
+      if (auth !== `Bearer ${adminKey}`) {
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      
+      // Export all emails
+      const emails = [];
+      const list = await env.BETA_SIGNUPS.list({ prefix: 'signup:' });
+      
+      for (const key of list.keys) {
+        const data = await env.BETA_SIGNUPS.get(key.name);
+        if (data) {
+          emails.push(JSON.parse(data));
+        }
+      }
+      
+      // Get total count
+      const totalCount = await env.BETA_SIGNUPS.get('total_signups');
+      
+      return new Response(JSON.stringify({
+        totalCount: totalCount ? parseInt(totalCount) : emails.length,
+        emails: emails.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)),
+      }, null, 2), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
+    // Only accept POST requests for signup
     if (request.method !== 'POST') {
       return new Response(JSON.stringify({ error: 'Method not allowed' }), {
         status: 405,

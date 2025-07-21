@@ -194,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageDiv = document.getElementById('form-message');
     const submitButton = form.querySelector('.btn-submit');
     
-    // Update this URL when you deploy your worker
-    const WORKER_URL = 'https://vros-beta-signup.YOUR-SUBDOMAIN.workers.dev';
+    // Worker URL for beta signups
+    const WORKER_URL = 'https://beta-api.vros.cat';
     
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

@@ -18,7 +18,7 @@ This is the official website for VROS (VR Operating System), showcasing its indu
 
 ## Deployment
 
-The site automatically deploys to GitHub Pages when changes are pushed to the `main` branch.
+The site is deployed via Cloudflare Pages.
 
 ## Local Development
 
@@ -32,7 +32,7 @@ python -m http.server 8000
 ## Domain Setup
 
 The site uses `vros.cat` via Cloudflare:
-1. CNAME record pointing to `kittynxr.github.io`
+1. Custom domain configured in Cloudflare
 2. SSL/TLS mode: Full
 3. Always Use HTTPS: Enabled
 

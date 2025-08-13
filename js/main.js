@@ -258,5 +258,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Console Easter egg
 console.log('%c🚀 VROS - The High-Performance VR Overlay System', 'font-size: 20px; font-weight: bold; color: #7c3aed;');
 console.log('%cBuilt for creators who demand the best. <25μs latency, 144Hz support, enterprise-grade performance.', 'font-size: 14px; color: #a78bfa;');
-// console.log('%cInterested in contributing? Check out our GitHub: https://github.com/kittynXR/catnet', 'font-size: 12px; color: #06b6d4;'); // Coming soon
-console.log('%cInterested in contributing? Our GitHub repository will be available soon!', 'font-size: 12px; color: #06b6d4;');
+// GitHub references removed
+console.log('%cInterested in contributing? Check out our documentation at docs.vros.cat', 'font-size: 12px; color: #06b6d4;');

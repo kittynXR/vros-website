@@ -123,6 +123,7 @@ function animatePerformanceMetrics() {
     
     perfValues.forEach(element => {
         const target = parseFloat(element.getAttribute('data-value'));
+        const finalValue = element.getAttribute('data-final');
         const isDecimal = target % 1 !== 0;
         const duration = 2000;
         const increment = target / (duration / 16);
@@ -133,12 +134,22 @@ function animatePerformanceMetrics() {
             if (current >= target) {
                 current = target;
                 clearInterval(timer);
-            }
-            
-            if (isDecimal) {
-                element.textContent = current.toFixed(1);
+                
+                // If there's a final value to show, display it after animation
+                if (finalValue) {
+                    element.textContent = finalValue;
+                } else if (isDecimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
             } else {
-                element.textContent = Math.floor(current);
+                // During animation, show numbers
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
             }
         }, 16);
     });

@@ -321,6 +321,51 @@ body {
     margin-top: var(--spacing-xs);
 }
 
+/* Platform Architecture Section */
+.architecture {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.arch-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.arch-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, 0.1);
+}
+
+.arch-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.arch-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.arch-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
 /* Features Section */
 .features {
     padding: var(--spacing-3xl) 0;

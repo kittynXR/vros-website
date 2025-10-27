@@ -1,6 +1,6 @@
 # Cloudflare Worker Setup for Email Collection
 
-This guide will help you deploy the email collection worker for VROS beta signups.
+This guide will help you deploy the email collection worker for vrOS beta signups.
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-// Cloudflare Worker for VROS Beta Signup
+// Cloudflare Worker for vrOS Beta Signup
 // This worker handles email collection with spam protection and rate limiting
 
 // Configuration

@@ -1,4 +1,4 @@
-// Main JavaScript for VROS Landing Page
+// Main JavaScript for vrOS Landing Page
 
 // Smooth scroll behavior for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Console Easter egg
-console.log('%c🚀 VROS - The High-Performance VR Overlay System', 'font-size: 20px; font-weight: bold; color: #7c3aed;');
+console.log('%c🚀 vrOS - The High-Performance VR Overlay System', 'font-size: 20px; font-weight: bold; color: #7c3aed;');
 console.log('%cBuilt for creators who demand the best. <25μs latency, 144Hz support, enterprise-grade performance.', 'font-size: 14px; color: #a78bfa;');
 // GitHub references removed
 console.log('%cInterested in contributing? Check out our documentation at docs.vros.cat', 'font-size: 12px; color: #06b6d4;');

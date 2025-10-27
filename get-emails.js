@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Script to retrieve emails from VROS beta signups
+// Script to retrieve emails from vrOS beta signups
 // Usage: node get-emails.js <admin-key>
 
 const WORKER_URL = 'https://beta-api.vros.cat/admin/export';

@@ -1,12 +1,12 @@
-# VROS Website
+# vrOS Website
 
-Landing page for VROS - The High-Performance VR Overlay System
+Landing page for vrOS - The High-Performance VR Overlay System
 
 🌐 **Live at**: [vros.cat](https://vros.cat)
 
 ## Overview
 
-This is the official website for VROS (VR Operating System), showcasing its industry-leading performance metrics and features for VR creators and professionals.
+This is the official website for vrOS (VR Operating System), showcasing its industry-leading performance metrics and features for VR creators and professionals.
 
 ## Features
 
@@ -38,4 +38,4 @@ The site uses `vros.cat` via Cloudflare:
 
 ## License
 
-Copyright © 2025 VROS. All rights reserved.
+Copyright © 2025 vrOS. All rights reserved.

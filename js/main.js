@@ -1,4 +1,4 @@
-// Main JavaScript for vrOS Landing Page
+// Main JavaScript for VROS Landing Page
 
 // Smooth scroll behavior for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -198,76 +198,5 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Email signup form handling
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('beta-signup-form');
-    const emailInput = document.getElementById('email-input');
-    const messageDiv = document.getElementById('form-message');
-    const submitButton = form.querySelector('.btn-submit');
-    
-    // Worker URL for beta signups
-    const WORKER_URL = 'https://beta-api.vros.cat';
-    
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Clear previous messages
-        messageDiv.textContent = '';
-        messageDiv.className = 'form-message';
-        
-        // Disable form during submission
-        emailInput.disabled = true;
-        submitButton.disabled = true;
-        submitButton.textContent = 'Submitting...';
-        
-        try {
-            const response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: emailInput.value.trim(),
-                }),
-            });
-            
-            const data = await response.json();
-            
-            if (response.ok && data.success) {
-                // Success
-                messageDiv.textContent = data.message;
-                messageDiv.className = 'form-message success';
-                
-                // Clear form on success
-                if (!data.duplicate) {
-                    emailInput.value = '';
-                }
-                
-                // Update progress bar (optional)
-                if (data.totalCount) {
-                    const percentage = Math.min(95, (data.totalCount / 1000) * 100);
-                    document.querySelector('.progress-fill').style.width = `${percentage}%`;
-                }
-            } else {
-                // Error
-                messageDiv.textContent = data.error || 'Something went wrong. Please try again.';
-                messageDiv.className = 'form-message error';
-            }
-        } catch (error) {
-            console.error('Submission error:', error);
-            messageDiv.textContent = 'Network error. Please check your connection and try again.';
-            messageDiv.className = 'form-message error';
-        } finally {
-            // Re-enable form
-            emailInput.disabled = false;
-            submitButton.disabled = false;
-            submitButton.textContent = 'Reserve My Spot';
-        }
-    });
-});
-
-// Console Easter egg
-console.log('%c🚀 vrOS - The High-Performance VR Overlay System', 'font-size: 20px; font-weight: bold; color: #7c3aed;');
-console.log('%cBuilt for creators who demand the best. <25μs latency, 144Hz support, enterprise-grade performance.', 'font-size: 14px; color: #a78bfa;');
-// GitHub references removed
-console.log('%cInterested in contributing? Check out our documentation at docs.vros.cat', 'font-size: 12px; color: #06b6d4;');
+// Basic marker for debugging deployments
+console.log('vrOS website loaded');

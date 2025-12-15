@@ -1,20 +1,18 @@
 # vrOS Website
 
-Landing page for vrOS - The High-Performance VR Overlay System
+Marketing site for vrOS (VR overlays + desktop control center).
 
-🌐 **Live at**: [vros.cat](https://vros.cat)
+Live at: https://vros.cat
 
 ## Overview
 
-This is the official website for vrOS (VR Operating System), showcasing its industry-leading performance metrics and features for VR creators and professionals.
+This is the official website for vrOS, highlighting its shipped features and linking to docs/support.
 
 ## Features
 
-- ⚡ Ultra-fast static site (no frameworks)
-- 🎨 Modern dark theme with VR aesthetics
-- 📱 Fully responsive design
-- 🚀 Smooth animations and interactions
-- 🔒 Cloudflare proxy compatible
+- Static site (no frameworks)
+- Responsive layout
+- Smooth animations and interactions
 
 ## Deployment
 

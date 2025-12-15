@@ -3,49 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vrOS - Native Systems Platform for VR</title>
-    <meta name="description" content="vrOS is a native systems platform designed for cross-platform VR. Linux, macOS, Unix, and OpenXR support in active development. Extensible architecture with <25μs IPC.">
-    <meta name="keywords" content="VR, virtual reality, overlay system, VR overlay, vrOS, VR development, VR streaming, VR creators, low latency VR">
+    <title>vrOS - VR overlays and desktop control center</title>
+    <meta name="description" content="vrOS is a multi-service VR overlay system for Windows + SteamVR: capture, in-VR keyboard, tools, and a desktop control center with Twitch/OBS/VRChat OSC integration.">
+    <meta name="keywords" content="VR, SteamVR, OpenVR, overlay, VR overlay, vrOS, VROS, VR streaming, Twitch, OBS, VRChat, OSC">
     <meta name="author" content="vrOS Team">
-    
-    <!-- Favicon -->
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/vros-logo.png">
-    
-    <!-- Open Graph / Facebook / Discord -->
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vros.cat/">
-    <meta property="og:title" content="vrOS - Native Systems Platform for VR">
-    <meta property="og:description" content="🚀 Cross-platform VR systems platform • Linux/macOS/Unix in development • OpenXR architecture • Native performance • Soon™!">
+    <meta property="og:title" content="vrOS - VR overlays and desktop control center">
+    <meta property="og:description" content="A multi-service VR overlay system for Windows + SteamVR: capture, keyboard, tools, and a desktop control center.">
     <meta property="og:image" content="https://vros.cat/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="vrOS - Professional VR Overlay System">
+    <meta property="og:image:alt" content="vrOS - VR overlays and desktop control center">
     <meta property="og:site_name" content="vrOS">
     <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter -->
+
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://vros.cat/">
-    <meta property="twitter:title" content="vrOS - Native Systems Platform for VR">
-    <meta property="twitter:description" content="🚀 Cross-platform VR systems platform • Linux/macOS/Unix in development • OpenXR architecture • Native performance">
+    <meta property="twitter:title" content="vrOS - VR overlays and desktop control center">
+    <meta property="twitter:description" content="A multi-service VR overlay system for Windows + SteamVR: capture, keyboard, tools, and a desktop control center.">
     <meta property="twitter:image" content="https://vros.cat/assets/images/og-image.png">
-    <meta property="twitter:image:alt" content="vrOS - Professional VR Overlay System">
-    
-    <!-- Additional SEO -->
+    <meta property="twitter:image:alt" content="vrOS - VR overlays and desktop control center">
+
     <link rel="canonical" href="https://vros.cat/">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#7c3aed">
-    
-    <!-- Structured Data -->
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "vrOS",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": ["Linux", "macOS", "Unix"],
-        "description": "Native systems platform for VR with extensible service architecture",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": ["Windows"],
+        "description": "Multi-service VR overlay system for Windows + SteamVR with capture, keyboard, and a desktop control center.",
         "url": "https://vros.cat/",
         "publisher": {
             "@type": "Organization",
@@ -53,17 +48,64 @@
         }
     }
     </script>
-    
-    <!-- Styles -->
+
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Preconnect to external resources -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+        <symbol id="icon-grid" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+        </symbol>
+        <symbol id="icon-arrows" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7 7h11l-3-3 1.4-1.4L22.8 9l-6.4 6.4L15 14l3-3H7V7zm10 10H6l3 3-1.4 1.4L1.2 15l6.4-6.4L9 10l-3 3h11v4z"/>
+        </symbol>
+        <symbol id="icon-layers" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2 2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5z"/>
+        </symbol>
+        <symbol id="icon-plug" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7 2h2v6h6V2h2v6h2v3h-1v4a6 6 0 0 1-5 5.9V23h-2v-2.1A6 6 0 0 1 6 15v-4H5V8h2V2zm1 9v4a4 4 0 0 0 4 4h0a4 4 0 0 0 4-4v-4H8z"/>
+        </symbol>
+        <symbol id="icon-hub" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M11 2h2v5h-2V2zM4.2 4.2l1.4-1.4 3.5 3.5-1.4 1.4-3.5-3.5zM19.8 4.2l-3.5 3.5-1.4-1.4 3.5-3.5 1.4 1.4zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM11 17h2v5h-2v-5z"/>
+        </symbol>
+        <symbol id="icon-link" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.5-3.5a3 3 0 0 1 4.2 4.2l-2.1 2.1-1.4-1.4 2.1-2.1a1 1 0 1 0-1.4-1.4l-3.5 3.5a1 1 0 0 1-1.4 0z"/>
+            <path fill="currentColor" d="M13.4 10.6a1 1 0 0 1 0 1.4l-3.5 3.5a3 3 0 0 1-4.2-4.2l2.1-2.1 1.4 1.4-2.1 2.1a1 1 0 1 0 1.4 1.4l3.5-3.5a1 1 0 0 1 1.4 0z"/>
+        </symbol>
+        <symbol id="icon-monitor" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-4v2h2v2H8v-2h2v-2H7a3 3 0 0 1-3-3V5zm3-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H7z"/>
+        </symbol>
+        <symbol id="icon-camera" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 7a3 3 0 0 1 3-3h5l2 2h3a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7zm3-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3.8L12.2 6H7z"/>
+            <path fill="currentColor" d="M12 10a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+        </symbol>
+        <symbol id="icon-keyboard" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6zm3-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H7z"/>
+            <path fill="currentColor" d="M8 9h2v2H8V9zm3 0h2v2h-2V9zm3 0h2v2h-2V9zM8 12h2v2H8v-2zm3 0h2v2h-2v-2zm3 0h2v2h-2v-2zM8 15h8v2H8v-2z"/>
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 4a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H10l-4.5 3.4A1 1 0 0 1 4 19v-3H7a3 3 0 0 1-3-3V4zm3-1a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h1a1 1 0 0 1 1 1v1.1L9.9 14H17a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H7z"/>
+        </symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+        </symbol>
+        <symbol id="icon-audio" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 10a3 3 0 0 1 3-3h3l5-4a1 1 0 0 1 1.6.8v16a1 1 0 0 1-1.6.8l-5-4H6a3 3 0 0 1-3-3v-4zm3-1a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3.4a1 1 0 0 1 .6.2l3.6 2.9V5.9L10 8.8a1 1 0 0 1-.6.2H6z"/>
+            <path fill="currentColor" d="M18.5 8.3a1 1 0 0 1 1.4 0A6 6 0 0 1 21.7 12a6 6 0 0 1-1.8 3.7 1 1 0 1 1-1.4-1.4A4 4 0 0 0 19.7 12a4 4 0 0 0-1.2-2.3 1 1 0 0 1 0-1.4z"/>
+        </symbol>
+        <symbol id="icon-broadcast" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 6a6 6 0 0 1 4.2 10.2 1 1 0 1 1-1.4-1.4A4 4 0 1 0 8.6 8.6a1 1 0 1 1-1.4-1.4A6 6 0 0 1 12 6z"/>
+            <path fill="currentColor" d="M12 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+        </symbol>
+        <symbol id="icon-gear" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.5-2.3.7a7.8 7.8 0 0 0-1.7-1l-.3-2.4H11l-.3 2.4a7.8 7.8 0 0 0-1.7 1L6.7 6l-2 3.5L6.7 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.5 2.3-.7a7.8 7.8 0 0 0 1.7 1l.3 2.4h4l.3-2.4a7.8 7.8 0 0 0 1.7-1l2.3.7 2-3.5L19.4 13zM13 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </symbol>
+    </svg>
+
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -71,328 +113,289 @@
             </div>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#performance">Performance</a>
+                <a href="#architecture">Architecture</a>
                 <a href="#use-cases">Use Cases</a>
-                <!-- GitHub link removed -->
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Native <span class="gradient-text">Systems Platform</span><br>
-                    for VR
+                    VR overlays and a<br>
+                    <span class="gradient-text">desktop control center</span>
                 </h1>
                 <p class="hero-subtitle">
-                    <span class="highlight">Cross-platform by design</span> • 
-                    <span class="highlight">Linux/macOS/Unix development</span> • 
-                    <span class="highlight">OpenXR architecture</span>
+                    <span class="highlight">Windows + SteamVR</span> •
+                    <span class="highlight">multi-service runtime</span> •
+                    <span class="highlight">capture + keyboard + tools</span>
                 </p>
                 <p class="hero-description">
-                    Designed from the ground up for cross-platform compatibility. vrOS is being built with Linux, 
-                    macOS, and Unix as first-class citizens, not afterthoughts. OpenXR integration ensures true portability.
+                    vrOS is a virtual reality overlay system with operating system-like semantics: a launcher starts a director and
+                    a set of services, and UIs (desktop + in-VR overlays) connect through low-latency local IPC using named pipes
+                    and shared memory.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://store.steampowered.com/app/3873610/vrOS/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20">
-                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 4.19 2.55 7.77 6.2 9.27l1.46-1.46c-.38-.15-.74-.36-1.08-.6l-.6.6A7.91 7.91 0 0 1 4.07 13H6.1a9.97 9.97 0 0 0 2.9 5.1l-1.42 1.42c-.2-.17-.4-.35-.58-.55L5.54 20.43C7.12 21.45 9 22 11 22h1c5.52 0 10-4.48 10-10S17.52 2 12 2zM11.86 4.01c2.3.05 4.36 1.17 5.75 2.88l-1.57.79c-1.05-1.3-2.63-2.13-4.4-2.17l.22-.5zm-.72 1.51L9.88 8.37c-.15-.02-.3-.03-.46-.03-.88 0-1.68.35-2.27.92L5.71 7.82a5.98 5.98 0 0 1 5.43-2.3zm6.79 4.3c.06.38.1.77.1 1.18 0 .36-.03.71-.08 1.05l-2.52-1.26a2.983 2.983 0 0 0-1.93-2.37V6.3c1.68.33 3.12 1.3 4.02 2.62l.41.9z"/>
-                        </svg>
-                        Wishlist on Steam
+                    <a class="btn btn-primary" href="https://store.steampowered.com/app/3873610" target="_blank" rel="noopener">
+                        View on Steam
                     </a>
-                    <a href="#features" class="btn btn-secondary">
-                        Explore Features
-                        <svg class="btn-icon" viewBox="0 0 24 24" width="16" height="16">
-                            <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                        </svg>
+                    <a class="btn btn-secondary" href="https://docs.vros.cat/" target="_blank" rel="noopener">
+                        Documentation
+                    </a>
+                    <a class="btn btn-secondary" href="https://support.vros.cat" target="_blank" rel="noopener">
+                        Support
                     </a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="performance-card">
+                <div class="performance-card" aria-label="vrOS highlights">
                     <div class="perf-metric">
-                        <span class="perf-value" data-value="42000" data-final="∞">∞</span>
-                        <span class="perf-unit">™</span>
-                        <span class="perf-label">Neural Interface</span>
+                        <span class="perf-value" data-value="4">0</span>
+                        <span class="perf-unit"></span>
+                        <span class="perf-label">Core overlays</span>
                     </div>
                     <div class="perf-metric">
-                        <span class="perf-value" data-value="25">25</span>
-                        <span class="perf-unit">μs</span>
-                        <span class="perf-label">IPC Latency</span>
+                        <span class="perf-value" data-value="2">0</span>
+                        <span class="perf-unit"></span>
+                        <span class="perf-label">Local IPC transports</span>
                     </div>
                     <div class="perf-metric">
-                        <span class="perf-value" data-value="0">0</span>
-                        <span class="perf-unit">%</span>
-                        <span class="perf-label">Compromise</span>
+                        <span class="perf-value" data-value="10">0</span>
+                        <span class="perf-unit">+</span>
+                        <span class="perf-label">Services</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Email Signup Section -->
-    <section class="email-signup">
+    <section class="cta" aria-label="Steam store link">
         <div class="container">
-            <div class="signup-card">
-                <div class="signup-content">
-                    <h2 class="signup-title">
-                        <span class="key-icon">🔑</span>
-                        Join the Private Beta
-                    </h2>
-                    <p class="signup-subtitle">
-                        Get exclusive early access before public launch
-                    </p>
-                    <div class="signup-benefits">
-                        <div class="benefit-item">✓ Chance to receive a private test key</div>
-                        <div class="benefit-item">✓ Be first when wishlisting opens Soon™</div>
-                        <div class="benefit-item">✓ Exclusive development updates</div>
-                        <div class="benefit-item">✓ Help shape vrOS with your feedback</div>
-                    </div>
-                    <form id="beta-signup-form" class="signup-form">
-                        <div class="form-group">
-                            <input 
-                                type="email" 
-                                id="email-input"
-                                name="email" 
-                                placeholder="your@email.com" 
-                                required
-                                class="email-input"
-                            >
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                Reserve My Spot
-                            </button>
-                        </div>
-                        <div class="form-message" id="form-message"></div>
-                        <p class="privacy-note">
-                            We respect your privacy. No spam, unsubscribe anytime.
-                        </p>
-                    </form>
-                    <div class="spots-remaining">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 73%"></div>
-                        </div>
-                        <p class="spots-text">Limited spots remaining</p>
-                    </div>
+            <div class="cta-content">
+                <h2 class="cta-title">Available on Steam</h2>
+                <p class="cta-subtitle">Download vrOS from the Steam store page.</p>
+                <div class="cta-actions">
+                    <a class="btn btn-primary btn-large" href="https://store.steampowered.com/app/3873610" target="_blank" rel="noopener">
+                        View on Steam
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Performance Stats -->
-    <section class="stats">
+    <section class="stats" aria-label="vrOS summary">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">⚡</div>
-                    <div class="stat-value" data-counter="5">0</div>
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-grid"/></svg></div>
+                    <div class="stat-value" data-counter="4">0</div>
+                    <div class="stat-suffix"></div>
+                    <div class="stat-label">Core overlays (capture, keyboard, tools, dashboard)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-arrows"/></svg></div>
+                    <div class="stat-value" data-counter="2">0</div>
+                    <div class="stat-suffix"></div>
+                    <div class="stat-label">Local transports (named pipes + shared memory)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-layers"/></svg></div>
+                    <div class="stat-value" data-counter="10">0</div>
                     <div class="stat-suffix">+</div>
-                    <div class="stat-label">Input Modes</div>
+                    <div class="stat-label">Multi-process services for isolation</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">📊</div>
-                    <div class="stat-value" data-counter="8">0</div>
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-plug"/></svg></div>
+                    <div class="stat-value" data-counter="3">0</div>
                     <div class="stat-suffix">+</div>
-                    <div class="stat-label">Service Domains</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-value" data-counter="25">0</div>
-                    <div class="stat-suffix">μs</div>
-                    <div class="stat-label">IPC Latency</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🚀</div>
-                    <div class="stat-value" data-counter="0">0</div>
-                    <div class="stat-suffix">%</div>
-                    <div class="stat-label">Compromise</div>
+                    <div class="stat-label">Twitch, OBS, VRChat OSC (and more)</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Platform Architecture Section -->
-    <section class="architecture">
+    <section id="architecture" class="architecture">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Extensible <span class="gradient-text">Architecture</span></h2>
-                <p class="section-subtitle">Built for expansion. Stable APIs, plugin ecosystem, and comprehensive service runtime.</p>
+                <h2 class="section-title">Service-based <span class="gradient-text">architecture</span></h2>
+                <p class="section-subtitle">Director + services + UIs, connected over local IPC.</p>
             </div>
-            
+
             <div class="architecture-grid">
                 <div class="arch-card">
-                    <div class="arch-icon">🔄</div>
-                    <h3>Cross-Platform Core</h3>
-                    <p>Designed for portability from day one. Linux, macOS, and Unix support are core architectural priorities, not ports.</p>
+                    <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-hub"/></svg></div>
+                    <h3>Discovery and shutdown</h3>
+                    <p>Services register to the director on a control channel. The director assigns channel names and coordinates shutdown.</p>
                 </div>
                 <div class="arch-card">
-                    <div class="arch-icon">🔗</div>
-                    <h3>OpenXR Foundation</h3>
-                    <p>Built on OpenXR standards for maximum compatibility. True cross-platform VR without vendor lock-in.</p>
+                    <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-link"/></svg></div>
+                    <h3>Named pipes and shared memory</h3>
+                    <p>Control/command/event channels default to named pipes; data channels can use shared memory for throughput.</p>
                 </div>
                 <div class="arch-card">
-                    <div class="arch-icon">📊</div>
-                    <h3>Native Performance</h3>
-                    <p>Platform abstraction without performance penalties. Each system gets optimized native implementations.</p>
+                    <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-monitor"/></svg></div>
+                    <h3>Desktop + in-VR overlays</h3>
+                    <p>Operate vrOS from a desktop control center and in-VR overlays (dashboard/tools/capture/keyboard).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Built from <span class="gradient-text">Bare Metal</span></h2>
-                <p class="section-subtitle">Advanced biometric interaction platform. Neural interfaces, eye tracking, and cutting-edge input methods.</p>
+                <h2 class="section-title">Built for <span class="gradient-text">real workflows</span></h2>
+                <p class="section-subtitle">Streaming tools, automation, and overlay control, backed by a service runtime.</p>
             </div>
-            
+
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Neural Interface Soon™</h3>
-                    <p>EEG and brain-computer interface integration in development. Direct neural control of VR environments.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-monitor"/></svg></div>
+                    <h3>Capture overlay</h3>
+                    <p>Capture windows and displays into VR with configurable throttling and interaction/pointer forwarding.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Platform-First Design</h3>
-                    <p>Architected for cross-platform from the beginning. OpenXR and Unix variants are core design priorities.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-keyboard"/></svg></div>
+                    <h3>In-VR keyboard</h3>
+                    <p>Keyboard overlay with routing support, layout/theme configuration, and VR-friendly focus behavior.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Lock-Free IPC</h3>
-                    <p>Sub-25μs message passing with SIMD-optimized transfers. Native transport layer built from scratch.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-chat"/></svg></div>
+                    <h3>Chat and integrations</h3>
+                    <p>Unified chat surface integrating Twitch chat and VRChat OSC, with settings persistence.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👁️</div>
-                    <h3>Eye Tracking Soon™</h3>
-                    <p>Precision gaze control and eye tracking integration coming. Advanced accessibility and interaction paradigms.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-camera"/></svg></div>
+                    <h3>OBS control</h3>
+                    <p>Connect to OBS and control scenes/sources and stream/record workflows through the OBS service.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI/ML Pipeline</h3>
-                    <p>Native speech recognition, LLMs, and inference engines. Whisper, CTranslate2, multiple backends ready now.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-code"/></svg></div>
+                    <h3>Scripting</h3>
+                    <p>Script library + editor, run/stop, output console, and an API browser for automation workflows.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Crash Protection</h3>
-                    <p>Process isolation with capability-based security. One service fails, others keep running.</p>
+                    <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-audio"/></svg></div>
+                    <h3>Audio control</h3>
+                    <p>Per-application volume/mute controls, device/session lists, and live audio level metering.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technical Deep Dive -->
-    <section id="performance" class="technical">
+    <section class="technical">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Cross-Platform <span class="gradient-text">by Design</span></h2>
-                <p class="section-subtitle">Linux, macOS, and OpenXR aren't afterthoughts—they're foundational architectural decisions.</p>
+                <h2 class="section-title">How it <span class="gradient-text">connects</span></h2>
+                <p class="section-subtitle">Service discovery and channel assignment are explicit, not magic.</p>
             </div>
-            
+
             <div class="tech-content">
                 <div class="benchmark-card">
-                    <h3>Design Philosophy</h3>
+                    <h3>Channel types</h3>
                     <div class="benchmark-chart">
-                        <div class="benchmark-bar" style="--width: 100%">
-                            <span class="bar-label">vrOS Approach</span>
-                            <span class="bar-value">Cross-Platform from Day One</span>
+                        <div class="benchmark-bar" style="--width: 75%">
+                            <span class="bar-label">Command / Event</span>
+                            <span class="bar-value">Named Pipe</span>
                         </div>
-                        <div class="benchmark-bar" style="--width: 35%">
-                            <span class="bar-label">Traditional VR</span>
-                            <span class="bar-value">Port Later (Maybe)</span>
+                        <div class="benchmark-bar" style="--width: 55%">
+                            <span class="bar-label">Data</span>
+                            <span class="bar-value">Shared Memory</span>
+                        </div>
+                        <div class="benchmark-bar" style="--width: 40%">
+                            <span class="bar-label">Negotiation</span>
+                            <span class="bar-value">Bootstrap SHM</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="tech-features">
                     <div class="tech-feature">
-                        <h4>Neural Integration Ready</h4>
-                        <p>Platform architecture designed for EEG, eye tracking, and advanced biometric sensors. Future-ready now.</p>
+                        <h4>Director-assigned channels</h4>
+                        <p>Services announce themselves; the director replies with the channel names and metadata to use for connections.</p>
                     </div>
                     <div class="tech-feature">
-                        <h4>Advanced Input Pipeline</h4>
-                        <p>Real-time processing for neural interfaces, gaze tracking, and biometric feedback with sub-latency response.</p>
+                        <h4>Crash isolation</h4>
+                        <p>Work is split across processes/services so failures are contained and UIs can degrade gracefully.</p>
                     </div>
                     <div class="tech-feature">
-                        <h4>OpenXR Foundation</h4>
-                        <p>Built on open standards from day one. Cross-platform compatibility without sacrificing performance.</p>
+                        <h4>Configuration-driven</h4>
+                        <p>Services and overlays read config files at startup to decide what channels to open and how to behave.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Use Cases -->
     <section id="use-cases" class="use-cases">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Beyond <span class="gradient-text">Controllers</span></h2>
-                <p class="section-subtitle">Current capabilities, Soon™ features, and the future of VR interaction.</p>
+                <h2 class="section-title">Use <span class="gradient-text">cases</span></h2>
+                <p class="section-subtitle">Built for streaming, power-user workflows, and VR desktop utility.</p>
             </div>
-            
+
             <div class="use-cases-grid">
                 <div class="use-case-card">
-                    <div class="use-case-icon">🎬</div>
-                    <h3>Current: Advanced Overlays</h3>
-                    <p>Window capture, AI integration, and gaze-based interactions available now. Foundation for neural interfaces.</p>
+                    <div class="use-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-broadcast"/></svg></div>
+                    <h3>Streaming</h3>
+                    <p>Manage overlays, Twitch interactions, OBS control, and a soundboard without leaving VR.</p>
                 </div>
                 <div class="use-case-card">
-                    <div class="use-case-icon">🔮</div>
-                    <h3>Soon™: Neural Control</h3>
-                    <p>EEG integration and brain-computer interfaces in development. Think to interact with VR environments.</p>
+                    <div class="use-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-monitor"/></svg></div>
+                    <h3>Work in VR</h3>
+                    <p>Capture apps into VR, use an in-VR keyboard, and control overlays from desktop or in-VR tools.</p>
                 </div>
                 <div class="use-case-card">
-                    <div class="use-case-icon">👨‍💻</div>
-                    <h3>Next: Eye Tracking</h3>
-                    <p>Precision gaze control, accessibility features, and advanced interaction paradigms coming Soon™.</p>
+                    <div class="use-case-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-gear"/></svg></div>
+                    <h3>Automation</h3>
+                    <p>Scripts and bot integrations let you build repeatable workflows across chat, OBS, and overlays.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">Ready for Neural VR?</h2>
-                <p class="cta-subtitle">Platform launches Soon™. EEG integration and eye tracking coming to redefine VR interaction.</p>
+                <h2 class="cta-title">Try vrOS</h2>
+                <p class="cta-subtitle">Start with the Steam build, then dive into docs and support resources.</p>
                 <div class="cta-actions">
-                    <a href="https://store.steampowered.com/app/3873610/vrOS/" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
-                        <svg class="btn-icon" viewBox="0 0 24 24" width="24" height="24">
-                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 4.19 2.55 7.77 6.2 9.27l1.46-1.46c-.38-.15-.74-.36-1.08-.6l-.6.6A7.91 7.91 0 0 1 4.07 13H6.1a9.97 9.97 0 0 0 2.9 5.1l-1.42 1.42c-.2-.17-.4-.35-.58-.55L5.54 20.43C7.12 21.45 9 22 11 22h1c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
-                        </svg>
-                        Wishlist on Steam
+                    <a class="btn btn-primary btn-large" href="https://store.steampowered.com/app/3873610" target="_blank" rel="noopener">
+                        View on Steam
                     </a>
-                    <!-- GitHub button removed -->
+                    <a class="btn btn-secondary btn-large" href="https://docs.vros.cat/" target="_blank" rel="noopener">
+                        Documentation
+                    </a>
+                    <a class="btn btn-secondary btn-large" href="https://support.vros.cat" target="_blank" rel="noopener">
+                        Support Center
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <span class="logo">vrOS</span>
-                    <p>Native Systems Platform for VR</p>
+                    <p>Multi-service VR overlays for SteamVR.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Resources</h4>
-                    <!-- GitHub link removed -->
-                    <a href="https://docs.vros.cat/" target="_blank">Documentation</a>
-                    <a href="https://store.steampowered.com/app/3873610" target="_blank">Steam Page</a>
+                    <a href="https://docs.vros.cat/" target="_blank" rel="noopener">Documentation</a>
+                    <a href="https://support.vros.cat" target="_blank" rel="noopener">Support</a>
+                    <a href="https://support.vros.cat/bugs/" target="_blank" rel="noopener">Bug Tracker</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Connect</h4>
-                    <span class="disabled-link" title="Coming Soon">Report Issues</span>
-                    <span class="disabled-link" title="Coming Soon">Discussions</span>
+                    <h4>Product</h4>
+                    <a href="https://store.steampowered.com/app/3873610" target="_blank" rel="noopener">Steam</a>
+                    <a href="https://support.vros.cat/report-bug.html" target="_blank" rel="noopener">Report a bug</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 vrOS. Built with ❤️ for the VR community.</p>
+                <p>&copy; 2025 vrOS.</p>
             </div>
         </div>
     </footer>

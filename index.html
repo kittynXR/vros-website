@@ -113,7 +113,7 @@
             </div>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#architecture">Architecture</a>
+                <a href="#architecture">About</a>
                 <a href="#use-cases">Use Cases</a>
             </div>
         </div>
@@ -128,13 +128,13 @@
                 </h1>
                 <p class="hero-subtitle">
                     <span class="highlight">Windows + SteamVR</span> •
-                    <span class="highlight">multi-service runtime</span> •
-                    <span class="highlight">capture + keyboard + tools</span>
+                    <span class="highlight">capture + keyboard</span> •
+                    <span class="highlight">Twitch + OBS + VRChat</span>
                 </p>
                 <p class="hero-description">
-                    vrOS is a virtual reality overlay system with operating system-like semantics: a launcher starts a director and
-                    a set of services, and UIs (desktop + in-VR overlays) connect through low-latency local IPC using named pipes
-                    and shared memory.
+                    vrOS brings capture and controls into VR, with a desktop control center and in-VR tools.
+                    Capture windows, manage overlays, type with an in-VR keyboard, and run streaming workflows with Twitch, OBS,
+                    and VRChat OSC.
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="https://store.steampowered.com/app/3873610" target="_blank" rel="noopener">
@@ -158,12 +158,12 @@
                     <div class="perf-metric">
                         <span class="perf-value" data-value="2">0</span>
                         <span class="perf-unit"></span>
-                        <span class="perf-label">Local IPC transports</span>
+                        <span class="perf-label">Control surfaces</span>
                     </div>
                     <div class="perf-metric">
-                        <span class="perf-value" data-value="10">0</span>
+                        <span class="perf-value" data-value="3">0</span>
                         <span class="perf-unit">+</span>
-                        <span class="perf-label">Services</span>
+                        <span class="perf-label">Integrations</span>
                     </div>
                 </div>
             </div>
@@ -194,22 +194,22 @@
                     <div class="stat-label">Core overlays (capture, keyboard, tools, dashboard)</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-arrows"/></svg></div>
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-monitor"/></svg></div>
                     <div class="stat-value" data-counter="2">0</div>
                     <div class="stat-suffix"></div>
-                    <div class="stat-label">Local transports (named pipes + shared memory)</div>
+                    <div class="stat-label">Control surfaces (desktop + in-VR)</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-layers"/></svg></div>
+                    <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-gear"/></svg></div>
                     <div class="stat-value" data-counter="10">0</div>
                     <div class="stat-suffix">+</div>
-                    <div class="stat-label">Multi-process services for isolation</div>
+                    <div class="stat-label">Tools, panels, and automation</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-plug"/></svg></div>
                     <div class="stat-value" data-counter="3">0</div>
                     <div class="stat-suffix">+</div>
-                    <div class="stat-label">Twitch, OBS, VRChat OSC (and more)</div>
+                    <div class="stat-label">Integrations (Twitch, OBS, VRChat OSC)</div>
                 </div>
             </div>
         </div>
@@ -218,24 +218,24 @@
     <section id="architecture" class="architecture">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Service-based <span class="gradient-text">architecture</span></h2>
-                <p class="section-subtitle">Director + services + UIs, connected over local IPC.</p>
+                <h2 class="section-title">Built for <span class="gradient-text">reliability</span></h2>
+                <p class="section-subtitle">A background runtime that keeps overlays responsive.</p>
             </div>
 
             <div class="architecture-grid">
                 <div class="arch-card">
                     <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-hub"/></svg></div>
-                    <h3>Discovery and shutdown</h3>
-                    <p>Services register to the director on a control channel. The director assigns channel names and coordinates shutdown.</p>
+                    <h3>Clean startup and shutdown</h3>
+                    <p>A launcher starts vrOS components in order and coordinates shutdown, including a system tray menu on Windows.</p>
                 </div>
                 <div class="arch-card">
                     <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-link"/></svg></div>
-                    <h3>Named pipes and shared memory</h3>
-                    <p>Control/command/event channels default to named pipes; data channels can use shared memory for throughput.</p>
+                    <h3>Stays responsive</h3>
+                    <p>Work is split into background components so capture, chat, audio, and integrations keep running smoothly.</p>
                 </div>
                 <div class="arch-card">
                     <div class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-monitor"/></svg></div>
-                    <h3>Desktop + in-VR overlays</h3>
+                    <h3>Control anywhere</h3>
                     <p>Operate vrOS from a desktop control center and in-VR overlays (dashboard/tools/capture/keyboard).</p>
                 </div>
             </div>
@@ -279,50 +279,6 @@
                     <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-audio"/></svg></div>
                     <h3>Audio control</h3>
                     <p>Per-application volume/mute controls, device/session lists, and live audio level metering.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="technical">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">How it <span class="gradient-text">connects</span></h2>
-                <p class="section-subtitle">Service discovery and channel assignment are explicit, not magic.</p>
-            </div>
-
-            <div class="tech-content">
-                <div class="benchmark-card">
-                    <h3>Channel types</h3>
-                    <div class="benchmark-chart">
-                        <div class="benchmark-bar" style="--width: 75%">
-                            <span class="bar-label">Command / Event</span>
-                            <span class="bar-value">Named Pipe</span>
-                        </div>
-                        <div class="benchmark-bar" style="--width: 55%">
-                            <span class="bar-label">Data</span>
-                            <span class="bar-value">Shared Memory</span>
-                        </div>
-                        <div class="benchmark-bar" style="--width: 40%">
-                            <span class="bar-label">Negotiation</span>
-                            <span class="bar-value">Bootstrap SHM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-features">
-                    <div class="tech-feature">
-                        <h4>Director-assigned channels</h4>
-                        <p>Services announce themselves; the director replies with the channel names and metadata to use for connections.</p>
-                    </div>
-                    <div class="tech-feature">
-                        <h4>Crash isolation</h4>
-                        <p>Work is split across processes/services so failures are contained and UIs can degrade gracefully.</p>
-                    </div>
-                    <div class="tech-feature">
-                        <h4>Configuration-driven</h4>
-                        <p>Services and overlays read config files at startup to decide what channels to open and how to behave.</p>
-                    </div>
                 </div>
             </div>
         </div>

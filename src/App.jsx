@@ -1,67 +1,67 @@
 const releaseSignals = [
   {
-    label: "Desktop-first runtime",
-    detail: "Operate vrOS from the control center even when SteamVR is not front-and-center.",
+    label: "Overlay system",
+    detail: "Put desktop windows and tools into VR.",
   },
   {
-    label: "Overlay stack",
-    detail: "Capture, keyboard, dashboard, HUD, chat, and creator tools share one system.",
+    label: "Desktop + VR",
+    detail: "Set up on desktop, then use it in-headset.",
   },
   {
-    label: "Creator wiring",
-    detail: "OBS, Twitch, and VRChat OSC stay close to the same control surface.",
+    label: "Creator tools",
+    detail: "OBS, Twitch, and VRChat are there when you need them.",
   },
 ];
 
 const capabilityCards = [
   {
-    eyebrow: "Capture",
-    title: "Bring real windows into VR without losing the desktop.",
-    copy: "Capture monitors or app windows, position them in-space, and keep interaction and focus routing on the same track.",
-    bullets: ["Window and display capture", "Pointer forwarding", "Throttle-aware overlay rendering"],
+    eyebrow: "Overlays",
+    title: "Put desktop apps into VR.",
+    copy: "Capture windows or displays, place them where you want, and keep them usable.",
+    bullets: ["Window and display capture", "In-VR placement", "Stable overlay rendering"],
   },
   {
     eyebrow: "Control",
-    title: "Switch between desktop and in-VR control instead of picking one.",
-    copy: "The desktop control center and VR overlays mirror the same system so setup, debugging, and live use all stay coherent.",
-    bullets: ["Desktop control center", "Dashboard and tools overlays", "Settings and state persistence"],
+    title: "Manage it from desktop or VR.",
+    copy: "The desktop control center and VR overlays use the same system, so setup and live use stay in sync.",
+    bullets: ["Desktop control center", "Dashboard overlays", "Saved settings"],
   },
   {
     eyebrow: "Input",
-    title: "Keep typing and interaction usable in a headset.",
-    copy: "vrOS includes an in-VR keyboard, focus-aware routing, and overlay interaction patterns built for longer sessions.",
-    bullets: ["In-VR keyboard", "Focus-visible interaction states", "Layout and theme configuration"],
+    title: "Keep input usable in-headset.",
+    copy: "Use the VR keyboard and focus-aware input routing without breaking your workflow.",
+    bullets: ["VR keyboard", "Pointer and focus routing", "Quick layout changes"],
   },
   {
     eyebrow: "Creator",
-    title: "Run stream and community workflows without alt-tabbing out of VR.",
-    copy: "Chat, OBS control, automation, and VRChat OSC integrations sit close to your overlays instead of living in separate tools.",
-    bullets: ["OBS scenes and actions", "Twitch chat surfaces", "VRChat OSC integration"],
+    title: "Bring creative tools into the same space.",
+    copy: "Keep stream and community tools close to your overlays instead of scattered across other windows.",
+    bullets: ["OBS controls", "Twitch chat", "VRChat OSC"],
   },
 ];
 
 const workflowCards = [
   {
     title: "Streaming",
-    copy: "Keep OBS control, Twitch chat, audio control, and capture panels near the same scene instead of juggling windows across monitors.",
+    copy: "Keep OBS, chat, and capture surfaces close to the same VR scene.",
   },
   {
     title: "Work in VR",
-    copy: "Pin captured apps, use the keyboard overlay, and manage layouts from the desktop control center before you put the headset on.",
+    copy: "Pin apps in space, use the keyboard overlay, and manage layouts from desktop first.",
   },
   {
-    title: "Automation",
-    copy: "Use scripts, panels, and integrations as repeatable control surfaces for scenes, chat, overlays, and utility actions.",
+    title: "Creative tools",
+    copy: "Add creator-facing tools only when you need them, without changing the core overlay setup.",
   },
 ];
 
 const compatibilityRows = [
   ["Primary platform", "Windows 11"],
   ["VR runtime", "SteamVR"],
-  ["Control surfaces", "Desktop control center + in-VR overlays"],
-  ["Core overlay types", "Capture, dashboard, HUD, keyboard, chat, utilities"],
-  ["Launch integrations", "OBS, Twitch, VRChat OSC"],
-  ["Docs and support", "Dedicated docs and support centers for release"],
+  ["Control", "Desktop control center + VR overlays"],
+  ["Core tools", "Capture, dashboard, keyboard, chat, utilities"],
+  ["Creator extras", "OBS, Twitch, VRChat OSC"],
+  ["Help", "Docs and support sites"],
 ];
 
 export default function App() {
@@ -72,8 +72,8 @@ export default function App() {
         <a className="brand-link" href="/" aria-label="vrOS home">
           <img className="brand-mark" src="/assets/vros-logo.png" alt="" />
           <div>
-            <p className="type-micro brand-kicker">vrOS / release track</p>
-            <strong className="brand-name">VR overlays and desktop control center</strong>
+            <p className="type-micro brand-kicker">vrOS / release</p>
+            <strong className="brand-name">SteamVR overlays + creator tools</strong>
           </div>
         </a>
         <nav className="nav-links" aria-label="Primary">
@@ -91,15 +91,14 @@ export default function App() {
               <span className="vros-badge" data-tone="primary">
                 Preparing the final release
               </span>
-              <span className="type-mono hero-meta">Windows + SteamVR + creator tooling</span>
+              <span className="type-mono hero-meta">Windows + SteamVR</span>
             </div>
             <h1 className="type-display hero-title">
-              Build your overlay stack once, then control it from the desktop or from inside VR.
+              A SteamVR overlay system with extra tools for creators.
             </h1>
             <p className="type-body hero-body">
-              vrOS is a desktop-first runtime with in-VR overlays for capture, keyboard input,
-              chat, utilities, and creator workflows. It is designed to stay readable, stable,
-              and close to the work you are already doing in SteamVR.
+              vrOS lets you bring desktop windows into VR, use a VR keyboard, and manage overlays
+              from desktop or in-headset. OBS, Twitch, and VRChat tools are there when you want them.
             </p>
             <div className="hero-actions">
               <a
@@ -132,8 +131,8 @@ export default function App() {
           <aside className="hero-frame vros-card" data-raised="true">
             <div className="hero-frame-head">
               <div>
-                <p className="type-micro frame-eyebrow">Launch deck</p>
-                <h2 className="type-h2">Release surface map</h2>
+                <p className="type-micro frame-eyebrow">At a glance</p>
+                <h2 className="type-h2">What ships</h2>
               </div>
               <span className="vros-badge" data-tone="success">
                 Docs + support ready
@@ -153,11 +152,10 @@ export default function App() {
               <div className="hero-brand-copy">
                 <div>
                   <p className="type-micro">Release identity</p>
-                  <strong className="type-h3">One mark across every public surface</strong>
+                  <strong className="type-h3">One mark, one public surface set</strong>
                 </div>
                 <p className="type-small">
-                  The landing site, docs center, and support center now share the same app mark as
-                  the desktop runtime.
+                  The site, docs, and support center now match the desktop app.
                 </p>
               </div>
             </div>
@@ -184,11 +182,10 @@ export default function App() {
 
         <section className="section-block" id="features">
           <div className="section-heading">
-            <p className="type-micro">Feature map</p>
-            <h2 className="type-h1">A release site built around the product people actually touch.</h2>
+            <p className="type-micro">Features</p>
+            <h2 className="type-h1">vrOS is an overlay system first.</h2>
             <p className="type-body section-copy">
-              The release story centers on the real control surfaces: the runtime, the desktop
-              control center, and the overlay stack you bring into SteamVR.
+              Windows in VR, input that works, and a few extra tools for creators.
             </p>
           </div>
           <div className="capability-grid">
@@ -211,8 +208,8 @@ export default function App() {
 
         <section className="section-band" id="workflows">
           <div className="section-heading">
-            <p className="type-micro">Workflow lanes</p>
-            <h2 className="type-h1">Streaming, utility, and long-session VR work all share the same grammar.</h2>
+            <p className="type-micro">Use cases</p>
+            <h2 className="type-h1">Built for everyday VR use and creator setups.</h2>
           </div>
           <div className="workflow-grid">
             {workflowCards.map((workflow) => (
@@ -227,7 +224,7 @@ export default function App() {
         <section className="section-block" id="compatibility">
           <div className="section-heading">
             <p className="type-micro">Compatibility</p>
-            <h2 className="type-h1">The release scope is explicit.</h2>
+            <h2 className="type-h1">Release scope</h2>
           </div>
           <div className="compatibility-card vros-card" data-raised="true">
             {compatibilityRows.map(([label, value]) => (
@@ -243,10 +240,9 @@ export default function App() {
           <article className="release-callout vros-card" data-raised="true">
             <div>
               <p className="type-micro">Release path</p>
-              <h2 className="type-h1">Launch with docs, support, and clear upgrade paths already attached.</h2>
+              <h2 className="type-h1">Steam for install. Docs and support when needed.</h2>
               <p className="type-body">
-                The release stack now has a dedicated landing page, docs center, and support hub so
-                users have a stable place to install, learn, and get unstuck.
+                The public site is focused on the basics: what vrOS is, how to install it, and where to get help.
               </p>
             </div>
             <div className="release-actions">
@@ -264,7 +260,7 @@ export default function App() {
       <footer className="site-footer">
         <div>
           <p className="type-micro">vrOS</p>
-          <p className="type-small">SteamVR overlays, creator control, and desktop-first setup.</p>
+          <p className="type-small">SteamVR overlays with optional creator tools.</p>
         </div>
         <div className="footer-links">
           <a href="https://docs.vros.cat/">Docs</a>

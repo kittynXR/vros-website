@@ -76,6 +76,9 @@ a.vros-btn {
 .brand-mark {
   width: 42px;
   height: 42px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
   border-radius: var(--radius-md);
   border: 1px solid rgb(from var(--primary) r g b / 0.32);
   background: var(--surface-2);

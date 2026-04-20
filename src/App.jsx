@@ -139,11 +139,28 @@ export default function App() {
                 Docs + support ready
               </span>
             </div>
-            <img
-              className="hero-capsule"
-              src="/assets/vros-capsule.png"
-              alt="vrOS capsule art"
-            />
+            <div className="hero-brand-panel" aria-label="vrOS release brand panel">
+              <div className="hero-brand-row">
+                <span className="vros-badge" data-tone="primary">
+                  Canonical mark
+                </span>
+                <span className="type-mono hero-brand-meta">desktop + VR + release</span>
+              </div>
+              <div className="hero-brand-stage">
+                <div className="hero-brand-halo" aria-hidden="true" />
+                <img className="hero-brand-image" src="/assets/vros-logo.png" alt="vrOS app icon" />
+              </div>
+              <div className="hero-brand-copy">
+                <div>
+                  <p className="type-micro">Release identity</p>
+                  <strong className="type-h3">One mark across every public surface</strong>
+                </div>
+                <p className="type-small">
+                  The landing site, docs center, and support center now share the same app mark as
+                  the desktop runtime.
+                </p>
+              </div>
+            </div>
             <div className="frame-grid">
               <article className="frame-tile">
                 <p className="type-micro">Capture</p>

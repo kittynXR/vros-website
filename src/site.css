@@ -216,11 +216,72 @@ a.vros-btn {
   margin: 0 0 var(--sp-1);
 }
 
-.hero-capsule {
-  width: 100%;
+.hero-brand-panel {
+  position: relative;
+  display: grid;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
   border-radius: var(--radius-lg);
-  border: 1px solid rgb(from var(--primary) r g b / 0.25);
-  background: var(--surface-1);
+  border: 1px solid rgb(from var(--primary) r g b / 0.22);
+  background:
+    radial-gradient(circle at top right, rgb(from var(--primary) r g b / 0.18), transparent 34%),
+    linear-gradient(180deg, rgb(from var(--surface-1) r g b / 0.96), rgb(from var(--surface-2) r g b / 0.92));
+  overflow: hidden;
+}
+
+.hero-brand-row,
+.hero-brand-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.hero-brand-meta {
+  color: var(--fg-3);
+}
+
+.hero-brand-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 250px;
+  padding: var(--sp-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgb(from var(--border) r g b / 0.72);
+  background:
+    linear-gradient(rgb(from var(--primary) r g b / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(from var(--primary) r g b / 0.07) 1px, transparent 1px),
+    rgb(from var(--surface-0) r g b / 0.84);
+  background-size: 40px 40px, 40px 40px, auto;
+}
+
+.hero-brand-halo {
+  position: absolute;
+  inset: 16% 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(from var(--primary) r g b / 0.24), transparent 68%);
+  filter: blur(20px);
+}
+
+.hero-brand-image {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 300px);
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 30px rgb(from var(--primary) r g b / 0.18));
+}
+
+.hero-brand-copy {
+  align-items: end;
+  padding-top: var(--sp-3);
+  border-top: 1px solid rgb(from var(--border) r g b / 0.6);
+}
+
+.hero-brand-copy p,
+.hero-brand-copy strong {
+  margin: 0;
 }
 
 .frame-grid {
@@ -407,6 +468,12 @@ a.vros-btn {
   .frame-grid,
   .compatibility-row {
     grid-template-columns: 1fr;
+  }
+
+  .hero-brand-row,
+  .hero-brand-copy {
+    flex-direction: column;
+    align-items: start;
   }
 
   .section-band,

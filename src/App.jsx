@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useI18n, LOCALES } from "./i18n/index.jsx";
+import { Flag } from "./i18n/flags.jsx";
 import {
   bilibiliEmbedUrl,
   resolveTrailer,
@@ -14,21 +15,72 @@ const SCREENSHOT_BASE = "/assets/screenshots";
 
 function LanguageSwitcher() {
   const { locale, setLocale, t } = useI18n();
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onDocPointer(event) {
+      if (wrapRef.current && !wrapRef.current.contains(event.target)) setOpen(false);
+    }
+    function onKey(event) {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    }
+    document.addEventListener("mousedown", onDocPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const current = LOCALES[locale];
+
   return (
-    <label className="lang-switcher" aria-label={t("topbar.languageLabel")}>
-      <span className="vros-sr-only">{t("topbar.languageLabel")}</span>
-      <select
-        className="lang-select"
-        value={locale}
-        onChange={(event) => setLocale(event.target.value)}
+    <div className="lang-switcher" ref={wrapRef}>
+      <button
+        ref={buttonRef}
+        type="button"
+        className="lang-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={`${t("topbar.languageLabel")}: ${current.name}`}
+        onClick={() => setOpen((v) => !v)}
       >
-        {Object.entries(LOCALES).map(([code, info]) => (
-          <option key={code} value={code}>
-            {info.name}
-          </option>
-        ))}
-      </select>
-    </label>
+        <Flag locale={locale} className="lang-flag" />
+        <span className="lang-trigger-name">{current.name}</span>
+        <svg className="lang-chevron" viewBox="0 0 12 12" aria-hidden="true">
+          <path d="M3 4.5 L6 7.5 L9 4.5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <ul className="lang-menu" role="listbox" aria-label={t("topbar.languageLabel")}>
+          {Object.entries(LOCALES).map(([code, info]) => (
+            <li key={code} role="none">
+              <button
+                type="button"
+                role="option"
+                aria-selected={code === locale}
+                className="lang-menu-item"
+                data-active={code === locale}
+                onClick={() => {
+                  setLocale(code);
+                  setOpen(false);
+                  buttonRef.current?.focus();
+                }}
+              >
+                <Flag locale={code} className="lang-flag" />
+                <span>{info.name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 

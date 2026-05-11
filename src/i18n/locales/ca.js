@@ -2,7 +2,7 @@ const ca = {
   meta: {
     title: "vrOS | Overlays de VR i centre de control d'escriptori",
     description:
-      "vrOS porta el control de l'escriptori, la captura, el teclat i els fluxos de treball per a creadors a la VR amb un runtime centrat en l'escriptori i overlays de SteamVR.",
+      "vrOS porta les finestres de l'escriptori, la captura, un teclat de VR i els fluxos per a creadors a SteamVR amb un runtime centrat en l'escriptori.",
   },
   topbar: {
     kicker: "vrOS / llançament",
@@ -19,15 +19,15 @@ const ca = {
     badge: "Disponible a Steam",
     meta: "Windows + SteamVR",
     title: "Un sistema d'overlays per a SteamVR amb eines extres per a creadors.",
-    body: "vrOS et permet portar les finestres de l'escriptori a la VR, fer servir un teclat dins la VR i gestionar overlays des de l'escriptori o des de les ulleres. Les eines d'OBS, Twitch i VRChat hi són quan les necessites.",
+    body: "vrOS porta les finestres de l'escriptori a la VR i, per a l'entrada, ofereix un teclat de VR. El centre de control d'escriptori reuneix la configuració i les preferències, una taula de sons integrada i una pestanya en directe per a streamers. Les eines d'OBS, Twitch i VRChat hi són quan les necessites.",
     cta: {
       steam: "Veure a Steam",
       docs: "Llegir la documentació",
       support: "Obrir el suport",
     },
     signals: [
-      { label: "Sistema d'overlays", detail: "Porta finestres i eines de l'escriptori a la VR." },
-      { label: "Escriptori + VR", detail: "Configura-ho a l'escriptori i fes-ho servir amb les ulleres." },
+      { label: "Overlays dins la VR", detail: "Porta finestres i taulers de l'escriptori dins la VR." },
+      { label: "Centre de control d'escriptori", detail: "Configuració, taula de sons i pestanya en directe — tot a l'escriptori." },
       { label: "Eines de creador", detail: "OBS, Twitch i VRChat quan en tinguis necessitat." },
     ],
     media: {
@@ -46,14 +46,14 @@ const ca = {
       {
         eyebrow: "Overlays",
         title: "Porta les apps de l'escriptori a la VR.",
-        copy: "Captura finestres o pantalles, col·loca-les on vulguis i continuen sent usables.",
-        bullets: ["Captura de finestres i pantalles", "Col·locació dins la VR", "Renderitzat estable d'overlays"],
+        copy: "Captura finestres o pantalles, col·loca-les on vulguis i gestiona-les des dels overlays del tauler dins la VR.",
+        bullets: ["Captura de finestres i pantalles", "Col·locació dins la VR", "Overlays del tauler per controlar des de la VR"],
       },
       {
-        eyebrow: "Control",
-        title: "Gestiona-ho des de l'escriptori o des de la VR.",
-        copy: "El centre de control d'escriptori i els overlays de VR fan servir el mateix sistema, així que la configuració i l'ús en directe es mantenen sincronitzats.",
-        bullets: ["Centre de control d'escriptori", "Overlays del tauler", "Configuració desada"],
+        eyebrow: "Escriptori",
+        title: "Configuració i eines de creador, tot a l'escriptori.",
+        copy: "El centre de control d'escriptori reuneix tota la configuració i les preferències, una taula de sons integrada i una pestanya en directe per a streamers. Ajusta-ho tot fora de la VR i, després, posa't les ulleres.",
+        bullets: ["Tota la configuració i les preferències", "Taula de sons integrada", "Pestanya en directe per a streamers"],
       },
       {
         eyebrow: "Entrada",
@@ -74,7 +74,7 @@ const ca = {
     title: "Pensat per a l'ús quotidià de la VR i per a configuracions de creadors.",
     cards: [
       { title: "Streaming", copy: "Tingues OBS, el xat i les superfícies de captura a prop de la mateixa escena VR." },
-      { title: "Treballar amb VR", copy: "Fixa apps en l'espai, fes servir l'overlay de teclat i gestiona disposicions des de l'escriptori primer." },
+      { title: "Treballar amb VR", copy: "Fixa apps en l'espai, fes servir el teclat de VR i ajusta la col·locació des dels overlays dins la VR." },
       { title: "Eines creatives", copy: "Afegeix eines de creador només quan en necessitis, sense canviar la configuració principal dels overlays." },
     ],
   },
@@ -84,8 +84,9 @@ const ca = {
     rows: [
       ["Plataforma principal", "Windows 11"],
       ["Runtime de VR", "SteamVR"],
-      ["Control", "Centre de control d'escriptori + overlays de VR"],
-      ["Eines principals", "Captura, tauler, teclat, xat, utilitats"],
+      ["Overlays", "Captura de finestres/pantalles, col·locació dins la VR, overlays del tauler"],
+      ["Entrada", "Teclat de VR, enrutament de punter i focus"],
+      ["Centre de control d'escriptori", "Configuració, preferències, taula de sons, pestanya en directe"],
       ["Extres per a creadors", "OBS, Twitch, VRChat OSC"],
       ["Ajuda", "Llocs de documentació i suport"],
     ],

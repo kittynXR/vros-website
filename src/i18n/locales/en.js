@@ -2,7 +2,7 @@ const en = {
   meta: {
     title: "vrOS | VR overlays and desktop control center",
     description:
-      "vrOS brings desktop control, capture, keyboard, and creator workflows into VR with a desktop-first runtime and SteamVR overlays.",
+      "vrOS brings desktop windows, capture, an in-VR keyboard, and creator workflows into SteamVR with a desktop-first runtime.",
   },
   topbar: {
     kicker: "vrOS / release",
@@ -19,15 +19,15 @@ const en = {
     badge: "Available on Steam",
     meta: "Windows + SteamVR",
     title: "A SteamVR overlay system with extra tools for creators.",
-    body: "vrOS lets you bring desktop windows into VR, use a VR keyboard, and manage overlays from desktop or in-headset. OBS, Twitch, and VRChat tools are there when you want them.",
+    body: "vrOS brings desktop windows into VR with a VR keyboard for input, and ships a desktop control center for settings, plus a soundboard and a live tab for creators. OBS, Twitch, and VRChat tools are there when you want them.",
     cta: {
       steam: "View on Steam",
       docs: "Read the docs",
       support: "Open support",
     },
     signals: [
-      { label: "Overlay system", detail: "Put desktop windows and tools into VR." },
-      { label: "Desktop + VR", detail: "Set up on desktop, then use it in-headset." },
+      { label: "Overlays in VR", detail: "Put desktop windows and dashboards into VR." },
+      { label: "Desktop control center", detail: "Settings, soundboard, and live tab — all on desktop." },
       { label: "Creator tools", detail: "OBS, Twitch, and VRChat are there when you need them." },
     ],
     media: {
@@ -46,14 +46,14 @@ const en = {
       {
         eyebrow: "Overlays",
         title: "Put desktop apps into VR.",
-        copy: "Capture windows or displays, place them where you want, and keep them usable.",
-        bullets: ["Window and display capture", "In-VR placement", "Stable overlay rendering"],
+        copy: "Capture windows or displays, place them where you want, and manage them from in-VR dashboard overlays.",
+        bullets: ["Window and display capture", "In-VR placement", "Dashboard overlays for in-VR control"],
       },
       {
-        eyebrow: "Control",
-        title: "Manage it from desktop or VR.",
-        copy: "The desktop control center and VR overlays use the same system, so setup and live use stay in sync.",
-        bullets: ["Desktop control center", "Dashboard overlays", "Saved settings"],
+        eyebrow: "Desktop",
+        title: "Settings and creator tools, all on desktop.",
+        copy: "The desktop control center is where settings and preferences live, alongside a built-in soundboard and a live tab for streamers. Tweak everything outside VR, then put the headset on.",
+        bullets: ["All settings and preferences", "Built-in soundboard", "Live tab for streamers"],
       },
       {
         eyebrow: "Input",
@@ -74,7 +74,7 @@ const en = {
     title: "Built for everyday VR use and creator setups.",
     cards: [
       { title: "Streaming", copy: "Keep OBS, chat, and capture surfaces close to the same VR scene." },
-      { title: "Work in VR", copy: "Pin apps in space, use the keyboard overlay, and manage layouts from desktop first." },
+      { title: "Work in VR", copy: "Pin apps in space, use the VR keyboard, and adjust placement from in-VR overlays." },
       { title: "Creative tools", copy: "Add creator-facing tools only when you need them, without changing the core overlay setup." },
     ],
   },
@@ -84,8 +84,9 @@ const en = {
     rows: [
       ["Primary platform", "Windows 11"],
       ["VR runtime", "SteamVR"],
-      ["Control", "Desktop control center + VR overlays"],
-      ["Core tools", "Capture, dashboard, keyboard, chat, utilities"],
+      ["Overlays", "Window/display capture, in-VR placement, dashboard overlays"],
+      ["Input", "VR keyboard, pointer and focus routing"],
+      ["Desktop control center", "Settings, preferences, soundboard, live tab"],
       ["Creator extras", "OBS, Twitch, VRChat OSC"],
       ["Help", "Docs and support sites"],
     ],

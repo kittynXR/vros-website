@@ -2,7 +2,7 @@ const it = {
   meta: {
     title: "vrOS | Overlay VR e centro di controllo desktop",
     description:
-      "vrOS porta in VR il controllo del desktop, la cattura, la tastiera e i flussi di lavoro per creator, con un runtime desktop-first e overlay SteamVR.",
+      "vrOS porta le finestre del desktop, la cattura, una tastiera VR e i flussi per creator in SteamVR, con un runtime desktop-first.",
   },
   topbar: {
     kicker: "vrOS / release",
@@ -19,15 +19,15 @@ const it = {
     badge: "Disponibile su Steam",
     meta: "Windows + SteamVR",
     title: "Un sistema di overlay SteamVR con strumenti aggiuntivi per i creator.",
-    body: "vrOS ti permette di portare le finestre del desktop in VR, usare una tastiera VR e gestire gli overlay dal desktop o dal visore. Gli strumenti OBS, Twitch e VRChat sono lì quando ti servono.",
+    body: "vrOS porta le finestre del desktop in VR con una tastiera VR per l'input. Il centro di controllo desktop raccoglie impostazioni, preferenze, una soundboard integrata e una scheda live per gli streamer. Gli strumenti OBS, Twitch e VRChat sono lì quando ti servono.",
     cta: {
       steam: "Vedi su Steam",
       docs: "Leggi la documentazione",
       support: "Apri il supporto",
     },
     signals: [
-      { label: "Sistema di overlay", detail: "Porta finestre e strumenti del desktop nella VR." },
-      { label: "Desktop + VR", detail: "Configuri dal desktop, lo usi nel visore." },
+      { label: "Overlay in VR", detail: "Porta finestre e dashboard del desktop nella VR." },
+      { label: "Centro di controllo desktop", detail: "Impostazioni, soundboard e scheda live — tutto sul desktop." },
       { label: "Strumenti per creator", detail: "OBS, Twitch e VRChat quando ti servono." },
     ],
     media: {
@@ -46,14 +46,14 @@ const it = {
       {
         eyebrow: "Overlay",
         title: "Porta le app del desktop in VR.",
-        copy: "Cattura finestre o display, posizionali dove vuoi e continuano a essere utilizzabili.",
-        bullets: ["Cattura di finestre e display", "Posizionamento in VR", "Rendering overlay stabile"],
+        copy: "Cattura finestre o display, posizionali dove vuoi e gestiscili dagli overlay della dashboard direttamente in VR.",
+        bullets: ["Cattura di finestre e display", "Posizionamento in VR", "Overlay della dashboard per il controllo in VR"],
       },
       {
-        eyebrow: "Controllo",
-        title: "Gestisci dal desktop o dalla VR.",
-        copy: "Il centro di controllo desktop e gli overlay VR usano lo stesso sistema: configurazione e uso live restano sincronizzati.",
-        bullets: ["Centro di controllo desktop", "Overlay della dashboard", "Impostazioni salvate"],
+        eyebrow: "Desktop",
+        title: "Impostazioni e strumenti per creator, tutti sul desktop.",
+        copy: "Il centro di controllo desktop riunisce tutte le impostazioni e le preferenze, una soundboard integrata e una scheda live per gli streamer. Regola tutto fuori dalla VR e poi metti il visore.",
+        bullets: ["Tutte le impostazioni e le preferenze", "Soundboard integrata", "Scheda live per gli streamer"],
       },
       {
         eyebrow: "Input",
@@ -74,7 +74,7 @@ const it = {
     title: "Pensato per l'uso quotidiano in VR e per setup da creator.",
     cards: [
       { title: "Streaming", copy: "Tieni OBS, chat e superfici di cattura vicino alla stessa scena VR." },
-      { title: "Lavorare in VR", copy: "Fissa le app nello spazio, usa l'overlay tastiera e gestisci i layout prima dal desktop." },
+      { title: "Lavorare in VR", copy: "Fissa le app nello spazio, usa la tastiera VR e regola la posizione dagli overlay in VR." },
       { title: "Strumenti creativi", copy: "Aggiungi strumenti per creator solo quando servono, senza cambiare la configurazione principale degli overlay." },
     ],
   },
@@ -84,8 +84,9 @@ const it = {
     rows: [
       ["Piattaforma principale", "Windows 11"],
       ["Runtime VR", "SteamVR"],
-      ["Controllo", "Centro di controllo desktop + overlay VR"],
-      ["Strumenti principali", "Cattura, dashboard, tastiera, chat, utility"],
+      ["Overlay", "Cattura di finestre/display, posizionamento in VR, overlay della dashboard"],
+      ["Input", "Tastiera VR, routing di puntatore e focus"],
+      ["Centro di controllo desktop", "Impostazioni, preferenze, soundboard, scheda live"],
       ["Extra per creator", "OBS, Twitch, VRChat OSC"],
       ["Aiuto", "Siti di documentazione e supporto"],
     ],

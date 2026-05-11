@@ -2,7 +2,7 @@ const es = {
   meta: {
     title: "vrOS | Overlays de VR y centro de control de escritorio",
     description:
-      "vrOS lleva el control del escritorio, la captura, el teclado y los flujos de trabajo de creadores a la realidad virtual, con un runtime de escritorio y overlays de SteamVR.",
+      "vrOS lleva las ventanas del escritorio, la captura, un teclado en VR y los flujos de creadores a SteamVR, con un runtime de escritorio.",
   },
   topbar: {
     kicker: "vrOS / lanzamiento",
@@ -19,15 +19,15 @@ const es = {
     badge: "Disponible en Steam",
     meta: "Windows + SteamVR",
     title: "Un sistema de overlays para SteamVR con herramientas extra para creadores.",
-    body: "vrOS te permite llevar las ventanas del escritorio a la VR, usar un teclado en VR y gestionar overlays desde el escritorio o dentro del casco. OBS, Twitch y VRChat están disponibles cuando los necesites.",
+    body: "vrOS lleva las ventanas del escritorio a la VR y aporta un teclado en VR para la entrada. El centro de control de escritorio reúne ajustes, preferencias, una soundboard y una pestaña en directo para streamers. OBS, Twitch y VRChat están disponibles cuando los necesites.",
     cta: {
       steam: "Ver en Steam",
       docs: "Leer la documentación",
       support: "Abrir soporte",
     },
     signals: [
-      { label: "Sistema de overlays", detail: "Lleva ventanas y herramientas del escritorio a la VR." },
-      { label: "Escritorio + VR", detail: "Configúralo en el escritorio y úsalo con el casco." },
+      { label: "Overlays en VR", detail: "Lleva ventanas y paneles del escritorio a la VR." },
+      { label: "Centro de control de escritorio", detail: "Ajustes, soundboard y pestaña en directo, todo en el escritorio." },
       { label: "Herramientas de creador", detail: "OBS, Twitch y VRChat cuando los necesites." },
     ],
     media: {
@@ -46,14 +46,14 @@ const es = {
       {
         eyebrow: "Overlays",
         title: "Lleva las apps del escritorio a la VR.",
-        copy: "Captura ventanas o pantallas, colócalas donde quieras y mantenlas usables.",
-        bullets: ["Captura de ventanas y pantallas", "Colocación dentro de VR", "Renderizado estable de overlays"],
+        copy: "Captura ventanas o pantallas, colócalas donde quieras y gestiónalas desde los overlays del panel dentro de la VR.",
+        bullets: ["Captura de ventanas y pantallas", "Colocación dentro de VR", "Overlays del panel para controlar desde VR"],
       },
       {
-        eyebrow: "Control",
-        title: "Gestiónalo desde el escritorio o desde VR.",
-        copy: "El centro de control de escritorio y los overlays de VR usan el mismo sistema, así que la configuración y el uso en directo se mantienen sincronizados.",
-        bullets: ["Centro de control de escritorio", "Overlays del panel", "Ajustes guardados"],
+        eyebrow: "Escritorio",
+        title: "Ajustes y herramientas de creador, todo en el escritorio.",
+        copy: "El centro de control de escritorio reúne todos los ajustes y preferencias, una soundboard integrada y una pestaña en directo para streamers. Ajústalo todo fuera de la VR y luego ponte el casco.",
+        bullets: ["Todos los ajustes y preferencias", "Soundboard integrada", "Pestaña en directo para streamers"],
       },
       {
         eyebrow: "Entrada",
@@ -74,7 +74,7 @@ const es = {
     title: "Pensado para el uso diario de VR y para configuraciones de creadores.",
     cards: [
       { title: "Streaming", copy: "Mantén OBS, el chat y las superficies de captura cerca de la misma escena VR." },
-      { title: "Trabajar en VR", copy: "Fija apps en el espacio, usa el overlay de teclado y gestiona disposiciones desde el escritorio." },
+      { title: "Trabajar en VR", copy: "Fija apps en el espacio, usa el teclado en VR y ajusta la colocación desde los overlays dentro de la VR." },
       { title: "Herramientas creativas", copy: "Añade herramientas para creadores solo cuando las necesites, sin cambiar la configuración principal de overlays." },
     ],
   },
@@ -84,8 +84,9 @@ const es = {
     rows: [
       ["Plataforma principal", "Windows 11"],
       ["Runtime de VR", "SteamVR"],
-      ["Control", "Centro de control de escritorio + overlays de VR"],
-      ["Herramientas principales", "Captura, panel, teclado, chat, utilidades"],
+      ["Overlays", "Captura de ventanas/pantallas, colocación en VR, overlays del panel"],
+      ["Entrada", "Teclado en VR, enrutamiento de puntero y foco"],
+      ["Centro de control de escritorio", "Ajustes, preferencias, soundboard, pestaña en directo"],
       ["Extras para creadores", "OBS, Twitch, VRChat OSC"],
       ["Ayuda", "Sitios de documentación y soporte"],
     ],

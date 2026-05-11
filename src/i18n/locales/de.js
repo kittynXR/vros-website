@@ -2,7 +2,7 @@ const de = {
   meta: {
     title: "vrOS | VR-Overlays und Desktop-Kontrollzentrum",
     description:
-      "vrOS bringt Desktop-Steuerung, Aufnahme, Tastatur und Creator-Workflows in die VR — mit einer Desktop-zuerst-Laufzeit und SteamVR-Overlays.",
+      "vrOS bringt Desktop-Fenster, Aufnahme, eine VR-Tastatur und Creator-Workflows in SteamVR — mit einer Desktop-zuerst-Laufzeit.",
   },
   topbar: {
     kicker: "vrOS / Release",
@@ -19,15 +19,15 @@ const de = {
     badge: "Auf Steam verfügbar",
     meta: "Windows + SteamVR",
     title: "Ein SteamVR-Overlay-System mit zusätzlichen Tools für Creator.",
-    body: "Mit vrOS bringst du Desktop-Fenster in die VR, nutzt eine VR-Tastatur und verwaltest Overlays vom Desktop oder im Headset. OBS-, Twitch- und VRChat-Tools sind da, wenn du sie brauchst.",
+    body: "vrOS bringt Desktop-Fenster in die VR und stellt für die Eingabe eine VR-Tastatur bereit. Das Desktop-Kontrollzentrum bündelt Einstellungen und Präferenzen, ergänzt um ein Soundboard und einen Live-Tab für Streamer. OBS-, Twitch- und VRChat-Tools sind da, wenn du sie brauchst.",
     cta: {
       steam: "Auf Steam ansehen",
       docs: "Doku lesen",
       support: "Support öffnen",
     },
     signals: [
-      { label: "Overlay-System", detail: "Desktop-Fenster und -Tools in der VR platzieren." },
-      { label: "Desktop + VR", detail: "Am Desktop einrichten, im Headset nutzen." },
+      { label: "Overlays in VR", detail: "Desktop-Fenster und Dashboards in der VR platzieren." },
+      { label: "Desktop-Kontrollzentrum", detail: "Einstellungen, Soundboard und Live-Tab — alles am Desktop." },
       { label: "Creator-Tools", detail: "OBS, Twitch und VRChat zur Hand, wenn nötig." },
     ],
     media: {
@@ -46,14 +46,14 @@ const de = {
       {
         eyebrow: "Overlays",
         title: "Desktop-Apps in die VR bringen.",
-        copy: "Erfasse Fenster oder Bildschirme, platziere sie, wo du willst, und nutze sie weiter wie gewohnt.",
-        bullets: ["Fenster- und Bildschirmerfassung", "Platzierung in der VR", "Stabiles Overlay-Rendering"],
+        copy: "Erfasse Fenster oder Bildschirme, platziere sie, wo du willst, und steuere sie über Dashboard-Overlays direkt aus der VR.",
+        bullets: ["Fenster- und Bildschirmerfassung", "Platzierung in der VR", "Dashboard-Overlays zur Steuerung in der VR"],
       },
       {
-        eyebrow: "Kontrolle",
-        title: "Vom Desktop oder aus der VR steuern.",
-        copy: "Desktop-Kontrollzentrum und VR-Overlays nutzen dasselbe System — Einrichtung und Live-Nutzung bleiben synchron.",
-        bullets: ["Desktop-Kontrollzentrum", "Dashboard-Overlays", "Gespeicherte Einstellungen"],
+        eyebrow: "Desktop",
+        title: "Einstellungen und Creator-Tools — alles am Desktop.",
+        copy: "Das Desktop-Kontrollzentrum bündelt sämtliche Einstellungen und Präferenzen sowie ein integriertes Soundboard und einen Live-Tab für Streamer. Alles außerhalb der VR vorbereiten, dann das Headset aufsetzen.",
+        bullets: ["Alle Einstellungen und Präferenzen", "Integriertes Soundboard", "Live-Tab für Streamer"],
       },
       {
         eyebrow: "Eingabe",
@@ -74,7 +74,7 @@ const de = {
     title: "Gebaut für VR-Alltag und Creator-Setups.",
     cards: [
       { title: "Streaming", copy: "OBS, Chat und Aufnahmen nah an der gleichen VR-Szene halten." },
-      { title: "Arbeiten in VR", copy: "Apps im Raum fixieren, Tastatur-Overlay nutzen und Layouts zuerst am Desktop verwalten." },
+      { title: "Arbeiten in VR", copy: "Apps im Raum fixieren, die VR-Tastatur nutzen und die Platzierung über die Overlays in der VR anpassen." },
       { title: "Kreative Tools", copy: "Creator-Tools nur dann hinzufügen, wenn sie gebraucht werden — ohne das Kern-Overlay-Setup anzufassen." },
     ],
   },
@@ -84,8 +84,9 @@ const de = {
     rows: [
       ["Primärplattform", "Windows 11"],
       ["VR-Laufzeit", "SteamVR"],
-      ["Steuerung", "Desktop-Kontrollzentrum + VR-Overlays"],
-      ["Kern-Tools", "Aufnahme, Dashboard, Tastatur, Chat, Werkzeuge"],
+      ["Overlays", "Fenster-/Bildschirmerfassung, Platzierung in VR, Dashboard-Overlays"],
+      ["Eingabe", "VR-Tastatur, Pointer- und Fokus-Routing"],
+      ["Desktop-Kontrollzentrum", "Einstellungen, Präferenzen, Soundboard, Live-Tab"],
       ["Creator-Extras", "OBS, Twitch, VRChat OSC"],
       ["Hilfe", "Doku- und Support-Seiten"],
     ],

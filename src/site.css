@@ -129,31 +129,92 @@ a.vros-btn {
   align-items: center;
 }
 
-.lang-select {
-  appearance: none;
-  -webkit-appearance: none;
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
   font: inherit;
   font-size: 13px;
   color: var(--fg-1);
-  padding: 8px 28px 8px 12px;
+  padding: 6px 10px 6px 8px;
   border-radius: var(--radius-pill);
   border: 1px solid rgb(from var(--border) r g b / 0.7);
-  background:
-    linear-gradient(45deg, transparent 50%, var(--fg-2) 50%) calc(100% - 14px) 50% / 5px 5px no-repeat,
-    linear-gradient(135deg, var(--fg-2) 50%, transparent 50%) calc(100% - 9px) 50% / 5px 5px no-repeat,
-    rgb(from var(--surface-2) r g b / 0.8);
+  background: rgb(from var(--surface-2) r g b / 0.8);
   backdrop-filter: blur(12px);
   cursor: pointer;
 }
 
-.lang-select:focus-visible {
+.lang-trigger:hover {
+  border-color: rgb(from var(--primary) r g b / 0.5);
+}
+
+.lang-trigger:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
-.lang-select option {
+.lang-flag {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: block;
+  box-shadow: 0 0 0 1px rgb(from var(--border) r g b / 0.6);
+}
+
+.lang-trigger-name {
+  white-space: nowrap;
+}
+
+.lang-chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--fg-2);
+  flex-shrink: 0;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  min-width: 180px;
+  max-height: 320px;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid rgb(from var(--border) r g b / 0.8);
+  background: rgb(from var(--surface-2) r g b / 0.95);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.45);
+}
+
+.lang-menu-item {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 13px;
   color: var(--fg-1);
-  background: var(--surface-1);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lang-menu-item:hover,
+.lang-menu-item:focus-visible {
+  background: rgb(from var(--primary) r g b / 0.16);
+  outline: none;
+}
+
+.lang-menu-item[data-active="true"] {
+  color: var(--primary);
 }
 
 .vros-sr-only {

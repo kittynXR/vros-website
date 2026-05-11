@@ -53,6 +53,10 @@ a.vros-btn {
 .page,
 .site-footer {
   position: relative;
+}
+
+.page,
+.site-footer {
   z-index: 1;
 }
 
@@ -64,6 +68,7 @@ a.vros-btn {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--sp-5) var(--sp-5) 0;
+  z-index: 30;
 }
 
 .brand-link {
@@ -127,6 +132,7 @@ a.vros-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
+  z-index: 50;
 }
 
 .lang-trigger {

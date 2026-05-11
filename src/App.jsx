@@ -3,6 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n, LOCALES } from "./i18n/index.jsx";
 import { Flag } from "./i18n/flags.jsx";
 import {
+  FEATURE_SLUGS,
+  WORKFLOW_SLUGS,
+  featureShot,
+  heroShot,
+  workflowShot,
+} from "./i18n/screenshots.js";
+import {
   bilibiliEmbedUrl,
   resolveTrailer,
   selfHostPoster,
@@ -10,8 +17,6 @@ import {
   vimeoEmbedUrl,
   youtubeEmbedUrl,
 } from "./i18n/trailers.js";
-
-const SCREENSHOT_BASE = "/assets/screenshots";
 
 function LanguageSwitcher() {
   const { locale, setLocale, t } = useI18n();
@@ -98,7 +103,7 @@ function SelfHostedTrailer({ locale, config, t }) {
     }
   }, [locale]);
 
-  if (failed) return <ScreenshotFallback t={t} />;
+  if (failed) return <ScreenshotFallback locale={locale} t={t} />;
 
   const handlePlay = () => {
     const node = videoRef.current;
@@ -107,7 +112,7 @@ function SelfHostedTrailer({ locale, config, t }) {
   };
 
   const sources = selfHostSources(locale);
-  const poster = config.poster || selfHostPoster(locale);
+  const poster = config.poster || heroShot(locale);
 
   return (
     <>
@@ -157,9 +162,9 @@ function EmbedTrailer({ locale, config, t }) {
   if (config.kind === "youtube") embedUrl = youtubeEmbedUrl(config.id, { autoplay: true });
   else if (config.kind === "bilibili") embedUrl = bilibiliEmbedUrl(config.bvid, { autoplay: true });
   else if (config.kind === "vimeo") embedUrl = vimeoEmbedUrl(config.id, { autoplay: true });
-  if (!embedUrl) return <ScreenshotFallback t={t} />;
+  if (!embedUrl) return <ScreenshotFallback locale={locale} t={t} />;
 
-  const poster = config.poster || `${SCREENSHOT_BASE}/hero/hero-product-shot.jpg`;
+  const poster = config.poster || heroShot(locale);
 
   if (active) {
     return (
@@ -193,11 +198,11 @@ function EmbedTrailer({ locale, config, t }) {
   );
 }
 
-function ScreenshotFallback({ t }) {
+function ScreenshotFallback({ locale, t }) {
   return (
     <img
       className="hero-media-fallback"
-      src={`${SCREENSHOT_BASE}/hero/hero-product-shot.jpg`}
+      src={heroShot(locale)}
       alt={t("hero.media.posterAlt")}
     />
   );
@@ -217,7 +222,7 @@ function HeroMedia() {
       </div>
       <div className="hero-media-stage">
         {resolved == null ? (
-          <ScreenshotFallback t={t} />
+          <ScreenshotFallback locale={locale} t={t} />
         ) : resolved.config.kind === "self" ? (
           <SelfHostedTrailer locale={resolved.locale} config={resolved.config} t={t} />
         ) : (
@@ -230,7 +235,7 @@ function HeroMedia() {
 }
 
 export default function App() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   const releaseSignals = t("hero.signals");
   const capabilityCards = t("features.cards");
   const workflowCards = t("workflows.cards");
@@ -241,7 +246,7 @@ export default function App() {
       <div className="site-backdrop" aria-hidden="true" />
       <header className="topbar">
         <a className="brand-link" href="/" aria-label="vrOS home">
-          <img className="brand-mark" src="/assets/vros-logo.png" alt="" />
+          <img className="brand-mark" src="/assets/vros-logo-128.png" width="42" height="42" alt="" />
           <div>
             <p className="type-micro brand-kicker">{t("topbar.kicker")}</p>
             <strong className="brand-name">{t("topbar.name")}</strong>
@@ -307,20 +312,28 @@ export default function App() {
             <p className="type-body section-copy">{t("features.copy")}</p>
           </div>
           <div className="capability-grid">
-            {capabilityCards.map((card) => (
-              <article className="vros-card capability-card" data-raised="true" key={card.title}>
-                <p className="type-micro">{card.eyebrow}</p>
-                <h3 className="type-h2">{card.title}</h3>
-                <p className="type-body">{card.copy}</p>
-                <ul className="detail-list">
-                  {card.bullets.map((bullet) => (
-                    <li className="type-small" key={bullet}>
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            {capabilityCards.map((card, index) => {
+              const slug = FEATURE_SLUGS[index];
+              return (
+                <article className="vros-card capability-card" data-raised="true" key={card.title}>
+                  {slug && (
+                    <div className="card-shot">
+                      <img src={featureShot(slug, locale)} alt={card.title} loading="lazy" />
+                    </div>
+                  )}
+                  <p className="type-micro">{card.eyebrow}</p>
+                  <h3 className="type-h2">{card.title}</h3>
+                  <p className="type-body">{card.copy}</p>
+                  <ul className="detail-list">
+                    {card.bullets.map((bullet) => (
+                      <li className="type-small" key={bullet}>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -330,12 +343,20 @@ export default function App() {
             <h2 className="type-h1">{t("workflows.title")}</h2>
           </div>
           <div className="workflow-grid">
-            {workflowCards.map((workflow) => (
-              <article className="workflow-card vros-card" key={workflow.title}>
-                <h3 className="type-h2">{workflow.title}</h3>
-                <p className="type-body">{workflow.copy}</p>
-              </article>
-            ))}
+            {workflowCards.map((workflow, index) => {
+              const slug = WORKFLOW_SLUGS[index];
+              return (
+                <article className="workflow-card vros-card" key={workflow.title}>
+                  {slug && (
+                    <div className="card-shot">
+                      <img src={workflowShot(slug, locale)} alt={workflow.title} loading="lazy" />
+                    </div>
+                  )}
+                  <h3 className="type-h2">{workflow.title}</h3>
+                  <p className="type-body">{workflow.copy}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
 

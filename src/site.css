@@ -447,6 +447,23 @@ a.vros-btn {
   padding: var(--sp-5);
 }
 
+.card-shot {
+  position: relative;
+  margin: calc(var(--sp-5) * -1) calc(var(--sp-5) * -1) 0;
+  border-bottom: 1px solid rgb(from var(--border) r g b / 0.5);
+  background: var(--surface-0);
+  overflow: hidden;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.card-shot img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .detail-list {
   display: grid;
   gap: var(--sp-2);

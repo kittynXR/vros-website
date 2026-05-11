@@ -1,70 +1,189 @@
-const releaseSignals = [
-  {
-    label: "Overlay system",
-    detail: "Put desktop windows and tools into VR.",
-  },
-  {
-    label: "Desktop + VR",
-    detail: "Set up on desktop, then use it in-headset.",
-  },
-  {
-    label: "Creator tools",
-    detail: "OBS, Twitch, and VRChat are there when you need them.",
-  },
-];
+import { useEffect, useRef, useState } from "react";
 
-const capabilityCards = [
-  {
-    eyebrow: "Overlays",
-    title: "Put desktop apps into VR.",
-    copy: "Capture windows or displays, place them where you want, and keep them usable.",
-    bullets: ["Window and display capture", "In-VR placement", "Stable overlay rendering"],
-  },
-  {
-    eyebrow: "Control",
-    title: "Manage it from desktop or VR.",
-    copy: "The desktop control center and VR overlays use the same system, so setup and live use stay in sync.",
-    bullets: ["Desktop control center", "Dashboard overlays", "Saved settings"],
-  },
-  {
-    eyebrow: "Input",
-    title: "Keep input usable in-headset.",
-    copy: "Use the VR keyboard and focus-aware input routing without breaking your workflow.",
-    bullets: ["VR keyboard", "Pointer and focus routing", "Quick layout changes"],
-  },
-  {
-    eyebrow: "Creator",
-    title: "Bring creative tools into the same space.",
-    copy: "Keep stream and community tools close to your overlays instead of scattered across other windows.",
-    bullets: ["OBS controls", "Twitch chat", "VRChat OSC"],
-  },
-];
+import { useI18n, LOCALES } from "./i18n/index.jsx";
+import {
+  bilibiliEmbedUrl,
+  resolveTrailer,
+  selfHostPoster,
+  selfHostSources,
+  vimeoEmbedUrl,
+  youtubeEmbedUrl,
+} from "./i18n/trailers.js";
 
-const workflowCards = [
-  {
-    title: "Streaming",
-    copy: "Keep OBS, chat, and capture surfaces close to the same VR scene.",
-  },
-  {
-    title: "Work in VR",
-    copy: "Pin apps in space, use the keyboard overlay, and manage layouts from desktop first.",
-  },
-  {
-    title: "Creative tools",
-    copy: "Add creator-facing tools only when you need them, without changing the core overlay setup.",
-  },
-];
+const SCREENSHOT_BASE = "/assets/screenshots";
 
-const compatibilityRows = [
-  ["Primary platform", "Windows 11"],
-  ["VR runtime", "SteamVR"],
-  ["Control", "Desktop control center + VR overlays"],
-  ["Core tools", "Capture, dashboard, keyboard, chat, utilities"],
-  ["Creator extras", "OBS, Twitch, VRChat OSC"],
-  ["Help", "Docs and support sites"],
-];
+function LanguageSwitcher() {
+  const { locale, setLocale, t } = useI18n();
+  return (
+    <label className="lang-switcher" aria-label={t("topbar.languageLabel")}>
+      <span className="vros-sr-only">{t("topbar.languageLabel")}</span>
+      <select
+        className="lang-select"
+        value={locale}
+        onChange={(event) => setLocale(event.target.value)}
+      >
+        {Object.entries(LOCALES).map(([code, info]) => (
+          <option key={code} value={code}>
+            {info.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function SelfHostedTrailer({ locale, config, t }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setPlaying(false);
+    setFailed(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [locale]);
+
+  if (failed) return <ScreenshotFallback t={t} />;
+
+  const handlePlay = () => {
+    const node = videoRef.current;
+    if (!node) return;
+    node.play().then(() => setPlaying(true)).catch(() => setFailed(true));
+  };
+
+  const sources = selfHostSources(locale);
+  const poster = config.poster || selfHostPoster(locale);
+
+  return (
+    <>
+      <video
+        ref={videoRef}
+        className="hero-media-video"
+        playsInline
+        controls={playing}
+        preload="metadata"
+        poster={poster}
+        onEnded={() => setPlaying(false)}
+        onError={() => setFailed(true)}
+      >
+        {sources.map((source) => (
+          <source key={source.src} src={source.src} type={source.type} />
+        ))}
+        {(config.captions || []).map((track) => (
+          <track
+            key={track.src}
+            kind="subtitles"
+            src={track.src}
+            srcLang={track.srclang}
+            label={track.label}
+            default={track.default}
+          />
+        ))}
+      </video>
+      {!playing && (
+        <button type="button" className="hero-media-play" onClick={handlePlay} aria-label={t("hero.media.playLabel")}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z" fill="currentColor" />
+          </svg>
+          <span>{t("hero.media.playLabel")}</span>
+        </button>
+      )}
+    </>
+  );
+}
+
+function EmbedTrailer({ locale, config, t }) {
+  const [active, setActive] = useState(false);
+  useEffect(() => {
+    setActive(false);
+  }, [locale]);
+
+  let embedUrl = null;
+  if (config.kind === "youtube") embedUrl = youtubeEmbedUrl(config.id, { autoplay: true });
+  else if (config.kind === "bilibili") embedUrl = bilibiliEmbedUrl(config.bvid, { autoplay: true });
+  else if (config.kind === "vimeo") embedUrl = vimeoEmbedUrl(config.id, { autoplay: true });
+  if (!embedUrl) return <ScreenshotFallback t={t} />;
+
+  const poster = config.poster || `${SCREENSHOT_BASE}/hero/hero-product-shot.jpg`;
+
+  if (active) {
+    return (
+      <iframe
+        className="hero-media-iframe"
+        src={embedUrl}
+        title={t("hero.media.title")}
+        loading="lazy"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+    );
+  }
+
+  return (
+    <>
+      <img className="hero-media-fallback" src={poster} alt={t("hero.media.posterAlt")} />
+      <button
+        type="button"
+        className="hero-media-play"
+        onClick={() => setActive(true)}
+        aria-label={t("hero.media.playLabel")}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 5v14l11-7z" fill="currentColor" />
+        </svg>
+        <span>{t("hero.media.playLabel")}</span>
+      </button>
+    </>
+  );
+}
+
+function ScreenshotFallback({ t }) {
+  return (
+    <img
+      className="hero-media-fallback"
+      src={`${SCREENSHOT_BASE}/hero/hero-product-shot.jpg`}
+      alt={t("hero.media.posterAlt")}
+    />
+  );
+}
+
+function HeroMedia() {
+  const { locale, t } = useI18n();
+  const resolved = resolveTrailer(locale);
+
+  return (
+    <aside className="hero-frame vros-card" data-raised="true">
+      <div className="hero-frame-head">
+        <div>
+          <p className="type-micro frame-eyebrow">{t("hero.media.eyebrow")}</p>
+          <h2 className="type-h2">{t("hero.media.title")}</h2>
+        </div>
+      </div>
+      <div className="hero-media-stage">
+        {resolved == null ? (
+          <ScreenshotFallback t={t} />
+        ) : resolved.config.kind === "self" ? (
+          <SelfHostedTrailer locale={resolved.locale} config={resolved.config} t={t} />
+        ) : (
+          <EmbedTrailer locale={resolved.locale} config={resolved.config} t={t} />
+        )}
+      </div>
+      <p className="type-small hero-media-caption">{t("hero.media.caption")}</p>
+    </aside>
+  );
+}
 
 export default function App() {
+  const { t } = useI18n();
+  const releaseSignals = t("hero.signals");
+  const capabilityCards = t("features.cards");
+  const workflowCards = t("workflows.cards");
+  const compatibilityRows = t("compatibility.rows");
+
   return (
     <div className="site-shell">
       <div className="site-backdrop" aria-hidden="true" />
@@ -72,34 +191,32 @@ export default function App() {
         <a className="brand-link" href="/" aria-label="vrOS home">
           <img className="brand-mark" src="/assets/vros-logo.png" alt="" />
           <div>
-            <p className="type-micro brand-kicker">vrOS / release</p>
-            <strong className="brand-name">SteamVR overlays + creator tools</strong>
+            <p className="type-micro brand-kicker">{t("topbar.kicker")}</p>
+            <strong className="brand-name">{t("topbar.name")}</strong>
           </div>
         </a>
-        <nav className="nav-links" aria-label="Primary">
-          <a href="#features">Features</a>
-          <a href="#workflows">Workflows</a>
-          <a href="#compatibility">Compatibility</a>
-          <a href="#release">Release</a>
-        </nav>
+        <div className="topbar-tools">
+          <nav className="nav-links" aria-label="Primary">
+            <a href="#features">{t("topbar.nav.features")}</a>
+            <a href="#workflows">{t("topbar.nav.workflows")}</a>
+            <a href="#compatibility">{t("topbar.nav.compatibility")}</a>
+            <a href="#release">{t("topbar.nav.release")}</a>
+          </nav>
+          <LanguageSwitcher />
+        </div>
       </header>
 
       <main className="page">
         <section className="hero">
           <div className="hero-copy">
             <div className="eyebrow-row">
-              <span className="vros-badge" data-tone="primary">
-                Preparing the final release
+              <span className="vros-badge" data-tone="success">
+                {t("hero.badge")}
               </span>
-              <span className="type-mono hero-meta">Windows + SteamVR</span>
+              <span className="type-mono hero-meta">{t("hero.meta")}</span>
             </div>
-            <h1 className="type-display hero-title">
-              A SteamVR overlay system with extra tools for creators.
-            </h1>
-            <p className="type-body hero-body">
-              vrOS lets you bring desktop windows into VR, use a VR keyboard, and manage overlays
-              from desktop or in-headset. OBS, Twitch, and VRChat tools are there when you want them.
-            </p>
+            <h1 className="type-display hero-title">{t("hero.title")}</h1>
+            <p className="type-body hero-body">{t("hero.body")}</p>
             <div className="hero-actions">
               <a
                 className="vros-btn"
@@ -109,13 +226,13 @@ export default function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="vros-btn-label">View on Steam</span>
+                <span className="vros-btn-label">{t("hero.cta.steam")}</span>
               </a>
               <a className="vros-btn" data-variant="secondary" data-size="lg" href="https://docs.vros.cat/">
-                <span className="vros-btn-label">Read the docs</span>
+                <span className="vros-btn-label">{t("hero.cta.docs")}</span>
               </a>
               <a className="vros-btn" data-variant="ghost" data-size="lg" href="https://support.vros.cat/">
-                <span className="vros-btn-label">Open support</span>
+                <span className="vros-btn-label">{t("hero.cta.support")}</span>
               </a>
             </div>
             <div className="signal-strip">
@@ -128,65 +245,14 @@ export default function App() {
             </div>
           </div>
 
-          <aside className="hero-frame vros-card" data-raised="true">
-            <div className="hero-frame-head">
-              <div>
-                <p className="type-micro frame-eyebrow">At a glance</p>
-                <h2 className="type-h2">What ships</h2>
-              </div>
-              <span className="vros-badge" data-tone="success">
-                Docs + support ready
-              </span>
-            </div>
-            <div className="hero-brand-panel" aria-label="vrOS release brand panel">
-              <div className="hero-brand-row">
-                <span className="vros-badge" data-tone="primary">
-                  Canonical mark
-                </span>
-                <span className="type-mono hero-brand-meta">desktop + VR + release</span>
-              </div>
-              <div className="hero-brand-stage">
-                <div className="hero-brand-halo" aria-hidden="true" />
-                <img className="hero-brand-image" src="/assets/vros-logo.png" alt="vrOS app icon" />
-              </div>
-              <div className="hero-brand-copy">
-                <div>
-                  <p className="type-micro">Release identity</p>
-                  <strong className="type-h3">One mark, one public surface set</strong>
-                </div>
-                <p className="type-small">
-                  The site, docs, and support center now match the desktop app.
-                </p>
-              </div>
-            </div>
-            <div className="frame-grid">
-              <article className="frame-tile">
-                <p className="type-micro">Capture</p>
-                <strong className="type-h3">Desktop windows in-space</strong>
-              </article>
-              <article className="frame-tile">
-                <p className="type-micro">Input</p>
-                <strong className="type-h3">Keyboard + focus routing</strong>
-              </article>
-              <article className="frame-tile">
-                <p className="type-micro">Automation</p>
-                <strong className="type-h3">Scripts, tools, and panels</strong>
-              </article>
-              <article className="frame-tile">
-                <p className="type-micro">Creator</p>
-                <strong className="type-h3">OBS, Twitch, VRChat OSC</strong>
-              </article>
-            </div>
-          </aside>
+          <HeroMedia />
         </section>
 
         <section className="section-block" id="features">
           <div className="section-heading">
-            <p className="type-micro">Features</p>
-            <h2 className="type-h1">vrOS is an overlay system first.</h2>
-            <p className="type-body section-copy">
-              Windows in VR, input that works, and a few extra tools for creators.
-            </p>
+            <p className="type-micro">{t("features.eyebrow")}</p>
+            <h2 className="type-h1">{t("features.title")}</h2>
+            <p className="type-body section-copy">{t("features.copy")}</p>
           </div>
           <div className="capability-grid">
             {capabilityCards.map((card) => (
@@ -208,8 +274,8 @@ export default function App() {
 
         <section className="section-band" id="workflows">
           <div className="section-heading">
-            <p className="type-micro">Use cases</p>
-            <h2 className="type-h1">Built for everyday VR use and creator setups.</h2>
+            <p className="type-micro">{t("workflows.eyebrow")}</p>
+            <h2 className="type-h1">{t("workflows.title")}</h2>
           </div>
           <div className="workflow-grid">
             {workflowCards.map((workflow) => (
@@ -223,8 +289,8 @@ export default function App() {
 
         <section className="section-block" id="compatibility">
           <div className="section-heading">
-            <p className="type-micro">Compatibility</p>
-            <h2 className="type-h1">Release scope</h2>
+            <p className="type-micro">{t("compatibility.eyebrow")}</p>
+            <h2 className="type-h1">{t("compatibility.title")}</h2>
           </div>
           <div className="compatibility-card vros-card" data-raised="true">
             {compatibilityRows.map(([label, value]) => (
@@ -239,18 +305,16 @@ export default function App() {
         <section className="release-strip" id="release">
           <article className="release-callout vros-card" data-raised="true">
             <div>
-              <p className="type-micro">Release path</p>
-              <h2 className="type-h1">Steam for install. Docs and support when needed.</h2>
-              <p className="type-body">
-                The public site is focused on the basics: what vrOS is, how to install it, and where to get help.
-              </p>
+              <p className="type-micro">{t("release.eyebrow")}</p>
+              <h2 className="type-h1">{t("release.title")}</h2>
+              <p className="type-body">{t("release.copy")}</p>
             </div>
             <div className="release-actions">
               <a className="vros-btn" data-variant="secondary" href="https://docs.vros.cat/">
-                <span className="vros-btn-label">Docs center</span>
+                <span className="vros-btn-label">{t("release.cta.docs")}</span>
               </a>
               <a className="vros-btn" data-variant="secondary" href="https://support.vros.cat/">
-                <span className="vros-btn-label">Support center</span>
+                <span className="vros-btn-label">{t("release.cta.support")}</span>
               </a>
             </div>
           </article>
@@ -259,14 +323,14 @@ export default function App() {
 
       <footer className="site-footer">
         <div>
-          <p className="type-micro">vrOS</p>
-          <p className="type-small">SteamVR overlays with optional creator tools.</p>
+          <p className="type-micro">{t("footer.kicker")}</p>
+          <p className="type-small">{t("footer.tagline")}</p>
         </div>
         <div className="footer-links">
-          <a href="https://docs.vros.cat/">Docs</a>
-          <a href="https://support.vros.cat/">Support</a>
+          <a href="https://docs.vros.cat/">{t("footer.links.docs")}</a>
+          <a href="https://support.vros.cat/">{t("footer.links.support")}</a>
           <a href="https://store.steampowered.com/app/3873610" target="_blank" rel="noreferrer">
-            Steam
+            {t("footer.links.steam")}
           </a>
         </div>
       </footer>

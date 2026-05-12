@@ -82,7 +82,7 @@ const de = {
     eyebrow: "Kompatibilität",
     title: "Release-Umfang",
     rows: [
-      ["Primärplattform", "Windows 11"],
+      ["Primärplattform", "Windows 10 / 11"],
       ["VR-Laufzeit", "SteamVR"],
       ["Overlays", "Fenster-/Bildschirmerfassung, Platzierung in VR, Dashboard-Overlays"],
       ["Eingabe", "VR-Tastatur, Pointer- und Fokus-Routing"],

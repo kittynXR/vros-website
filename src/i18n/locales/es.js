@@ -82,7 +82,7 @@ const es = {
     eyebrow: "Compatibilidad",
     title: "Alcance del lanzamiento",
     rows: [
-      ["Plataforma principal", "Windows 11"],
+      ["Plataforma principal", "Windows 10 / 11"],
       ["Runtime de VR", "SteamVR"],
       ["Overlays", "Captura de ventanas/pantallas, colocación en VR, overlays del panel"],
       ["Entrada", "Teclado en VR, enrutamiento de puntero y foco"],

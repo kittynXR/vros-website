@@ -82,7 +82,7 @@ const fr = {
     eyebrow: "Compatibilité",
     title: "Périmètre de sortie",
     rows: [
-      ["Plateforme principale", "Windows 11"],
+      ["Plateforme principale", "Windows 10 / 11"],
       ["Runtime VR", "SteamVR"],
       ["Overlays", "Capture de fenêtres/écrans, placement en VR, overlays du tableau de bord"],
       ["Saisie", "Clavier VR, routage pointeur et focus"],

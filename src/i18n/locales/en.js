@@ -82,7 +82,7 @@ const en = {
     eyebrow: "Compatibility",
     title: "Release scope",
     rows: [
-      ["Primary platform", "Windows 11"],
+      ["Primary platform", "Windows 10 / 11"],
       ["VR runtime", "SteamVR"],
       ["Overlays", "Window/display capture, in-VR placement, dashboard overlays"],
       ["Input", "VR keyboard, pointer and focus routing"],

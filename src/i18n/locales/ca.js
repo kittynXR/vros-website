@@ -82,7 +82,7 @@ const ca = {
     eyebrow: "Compatibilitat",
     title: "Abast del llançament",
     rows: [
-      ["Plataforma principal", "Windows 11"],
+      ["Plataforma principal", "Windows 10 / 11"],
       ["Runtime de VR", "SteamVR"],
       ["Overlays", "Captura de finestres/pantalles, col·locació dins la VR, overlays del tauler"],
       ["Entrada", "Teclat de VR, enrutament de punter i focus"],
